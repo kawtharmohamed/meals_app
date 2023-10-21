@@ -9,34 +9,35 @@ import 'package:meals_app/category/prsentation/widgets/loading_widget.dart';
 import 'package:meals_app/category/prsentation/widgets/meal_detail.dart';
 import 'package:meals_app/category/prsentation/widgets/meals_list.dart';
 import 'package:meals_app/category/prsentation/widgets/message_display_widget.dart';
-
 import '../../data/models/meal_model.dart';
-import '../../domain/entities/category.dart';
-import '../../domain/entities/meal.dart';
-
-class MealDetailPage extends StatelessWidget{
+class MealDetailPage extends StatelessWidget {
   final MealModel meal;
 
   const MealDetailPage({super.key, required this.meal});
   @override
   Widget build(BuildContext context) {
-    return Scaffold( appBar: _bulidAppBar(),
+    return Scaffold(
+      appBar: _bulidAppBar(),
       body: _buildBody(),
     );
   }
+
   AppBar _bulidAppBar() => AppBar(title: const Text("Meals"));
-  Widget _buildBody ()=> BlocBuilder(builder: ( context , state ) {
-    if (state is LoadingState){
-      return LoadingWidget();
-    } else if(state is LoadedMealsDetailState){
-      return RefreshIndicator( onRefresh: () => _onRefresh(context) ,
-          child: MealDetailWidget(meal: state.meal));
-    } else if(state is ErrorState){
-      return MessageDisplayWidget(message: state.message);
-    }
-    return LoadingWidget();
-  });
-  Future <void> _onRefresh (BuildContext context) async {
+  Widget _buildBody() => BlocConsumer<MealsDetailBloc, CategoriesMealsStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is LoadingState) {
+          return LoadingWidget();
+        } else if (state is LoadedMealsDetailState) {
+          return RefreshIndicator(
+              onRefresh: () => _onRefresh(context),
+              child: MealDetailWidget(meal: state.meal));
+        } else if (state is ErrorState) {
+          return MessageDisplayWidget(message: state.message);
+        }
+        return LoadingWidget();
+      });
+  Future<void> _onRefresh(BuildContext context) async {
     BlocProvider.of<MealsDetailBloc>(context).add(RefreshEvent());
   }
 }
