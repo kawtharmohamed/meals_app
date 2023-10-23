@@ -1,7 +1,7 @@
 class CategoryModel {
-  final int? idCategory;
-  final String strCategory;
-  final String strCategoryThumb;
+  final String? idCategory;
+  final String? strCategory;
+  final String? strCategoryThumb;
 
   CategoryModel({
     required this.idCategory,

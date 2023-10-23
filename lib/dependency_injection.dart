@@ -11,15 +11,13 @@ import 'package:meals_app/category/prsentation/bloc/category/meal_detail_bloc.da
 import 'package:http/http.dart' as http;
 final sl =GetIt.instance;
 Future <void> init () async {
+  sl.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl(sl()));
+  sl.registerLazySingleton<Repository>(() => RepositoryImpl(sl()));
   sl.registerFactory(() =>CategoriesBloc(getAllCategories: sl()));
-  sl.registerFactory(() => MealsBloc(getAllMeals: sl(), strCategory: sl()));
-  sl.registerFactory(() => MealsDetailBloc(getMealById: sl(), idMeal: sl()));
+  sl.registerFactory(() => MealsBloc(getAllMeals: sl()));
+  sl.registerFactory(() => MealsDetailBloc(getMealById: sl(),));
   sl.registerLazySingleton(() => GetAllCategoriesUsecase(sl()));
   sl.registerLazySingleton(() => GetAllMealsUsecase(sl()));
   sl.registerLazySingleton(() => GetMealByIdUsecase(sl()));
- sl.registerLazySingleton<Repository>(() => RepositoryImpl(sl()));
-  //sl.registerLazySingleton<Repository>(() => RepositoryImpl( cilent: sl()));
-  sl.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl(sl()));
- // sl.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl(client: sl<http.Client>()));
   sl.registerLazySingleton(() => http.Client());
 }

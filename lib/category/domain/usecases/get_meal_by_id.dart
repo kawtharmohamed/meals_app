@@ -8,7 +8,7 @@ class GetMealByIdUsecase{
    final Repository repository;
 
    GetMealByIdUsecase(this.repository);
-  Future <MealModel> call( int idMeal)  async{
+  Future <MealModel> call( String idMeal)  async{
     return await repository.getMealById(idMeal);
   }
 }

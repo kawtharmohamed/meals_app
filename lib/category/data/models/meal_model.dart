@@ -1,13 +1,13 @@
 class MealModel {
-  final int? idMeal;
-  final String strMeal;
-  final String strDrinkAlternate;
-  final String strCategory;
-  final String strArea;
-  final String strInstructions;
-  final String strMealThumb;
-  final String strTags;
-  final String strYoutube;
+  final String? idMeal;
+  final String? strMeal;
+  final String? strDrinkAlternate;
+  final String? strCategory;
+  final String? strArea;
+  final String? strInstructions;
+  final String? strMealThumb;
+  final String? strTags;
+  final String? strYoutube;
 
   MealModel({
     required this.idMeal,

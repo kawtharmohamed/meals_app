@@ -20,7 +20,7 @@ class LoadedCategoriesState extends CategoriesMealsStates {
 }
 class LoadedMealsState extends CategoriesMealsStates {
   final List<MealModel> meals ;
-  LoadedMealsState({ required this.meals });
+  LoadedMealsState({ required this.meals});
   @override
   List<Object> get props => [meals];
 }

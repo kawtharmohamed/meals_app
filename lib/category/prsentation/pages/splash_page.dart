@@ -6,6 +6,8 @@ import 'package:meals_app/core/style/colors.dart';
 import 'package:meals_app/core/utils/text.dart';
 
 class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
@@ -16,8 +18,8 @@ class SplashScreen extends StatelessWidget {
             width: 170,
             height: 170,
           ),
-        Padding(
-            padding: EdgeInsets.only(top: 10.0),
+          Padding(
+            padding:const EdgeInsets.only(top: 10.0),
             child: txt(MyColors.Black, "Food Fusion", 27, FontWeight.w600, FontStyle.italic),
           ),
           Padding(
@@ -29,8 +31,8 @@ class SplashScreen extends StatelessWidget {
           ),
         ],
       ),
-      nextScreen: HomePage(categories: [],),
-      duration: 3000,
+      nextScreen:const HomePage(),
+      duration: 2500,
       backgroundColor: MyColors.darkYellow,
       splashTransition: SplashTransition.fadeTransition,
       splashIconSize: 390,

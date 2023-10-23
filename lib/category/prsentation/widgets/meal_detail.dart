@@ -11,10 +11,10 @@ import '../../domain/entities/meal.dart';
 
 class MealDetailWidget extends StatelessWidget{
   final MealModel meal;
-
   const MealDetailWidget({super.key, required this.meal});
   @override
   Widget build(BuildContext context) {
+    print(' ${meal.strMealThumb}');
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -24,11 +24,11 @@ class MealDetailWidget extends StatelessWidget{
                 height: 330,
                 width: double.infinity,
                 decoration:  BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(meal.strMealThumb),
+                  image: DecorationImage( image:NetworkImage(meal.strMealThumb??"" ),
                     fit: BoxFit.fill,
                   ),
                 ),
+
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -72,27 +72,27 @@ class MealDetailWidget extends StatelessWidget{
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        txt(Colors.black, meal.strMeal, 20, FontWeight.w600 , FontStyle.normal),
+                        txt(Colors.black, meal.strMeal??'', 20, FontWeight.w600 , FontStyle.normal),
                         const SizedBox(height: 5),
                         const SizedBox(
                           height: 15,
                         ),
-                        txt(MyColors.LightGrey1, meal.strArea, 15, FontWeight.w500 , FontStyle.normal),
+                        txt(MyColors.LightGrey1, meal.strArea??'', 15, FontWeight.w500 , FontStyle.normal),
                         SizedBox(
                           width: 5,
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        txt(MyColors.LightGrey1, meal.strDrinkAlternate, 15, FontWeight.w500 , FontStyle.normal),
+                        txt(MyColors.LightGrey1, meal.strDrinkAlternate??'', 15, FontWeight.w500 , FontStyle.normal),
                         SizedBox(
                           width: 5,
                         ),
-                        txt(MyColors.LightGrey1, meal.strInstructions, 15, FontWeight.w500 , FontStyle.normal),
-                        const SizedBox(
-                          height: 17,
-                        ),
-                        SizedBox(height: 40), // Add some space before GridView
+                     //   txt(MyColors.LightGrey1, meal.strInstructions??'', 15, FontWeight.w500 , FontStyle.normal),
+                     //   const SizedBox(
+                     //     height: 17,
+                     //   ),
+                     //   SizedBox(height: 40),
                       ],
                     ),
                   ),

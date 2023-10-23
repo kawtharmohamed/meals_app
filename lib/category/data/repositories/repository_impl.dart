@@ -21,7 +21,7 @@ class RepositoryImpl implements Repository{
   }
 
   @override
-  Future<MealModel> getMealById(int idMeal)async  {
+  Future<MealModel> getMealById(String idMeal)async  {
      final remoteDetailMeal = await remoteDataSource.getMealById(idMeal);
      return remoteDetailMeal;
   }

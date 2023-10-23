@@ -7,11 +7,13 @@ import 'categorymeal_state.dart';
 
 class MealsDetailBloc extends Bloc<CategoriesMealsEvents, CategoriesMealsStates> {
   final GetMealByIdUsecase getMealById;
+  late String idMeal;
 
-  MealsDetailBloc({required this.getMealById , required int idMeal}) : super(CategoriesMealsInitial()) {
+  MealsDetailBloc({required this.getMealById}) : super(CategoriesMealsInitial()) {
     on<CategoriesMealsEvents>((event, emit) async {
       if (event is MealByIdEvent) {
         emit(LoadingState());
+        idMeal = event.idMeal;
         final meal = await getMealById(idMeal);
         emit( LoadedMealsDetailState(meal: meal));
       } else if (event is RefreshEvent) {

@@ -7,5 +7,5 @@ import '../entities/meal.dart';
 abstract class Repository {
   Future<List<CategoryModel>> getAllCategories();
   Future<List<MealModel>> getAllMeals(String strCategory);
-  Future<MealModel> getMealById(int idMeal);
+  Future<MealModel> getMealById(String idMeal);
 }
