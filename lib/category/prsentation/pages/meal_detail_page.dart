@@ -6,6 +6,8 @@ import 'package:meals_app/category/prsentation/bloc/category/meal_detail_bloc.da
 import 'package:meals_app/category/prsentation/widgets/loading_widget.dart';
 import 'package:meals_app/category/prsentation/widgets/meal_detail.dart';
 import 'package:meals_app/category/prsentation/widgets/message_display_widget.dart';
+import '../../../core/style/colors.dart';
+import '../../../core/utils/text.dart';
 import '../../../dependency_injection.dart';
 import '../../data/models/meal_model.dart';
 
@@ -22,7 +24,9 @@ class MealDetailPage extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar() => AppBar(title: const Text("Meal Detail"));
+  AppBar _buildAppBar() => AppBar(title: SizedBox( width: 300,
+      child: txt(MyColors.White, "Meal Detail", 22, FontWeight.w500,
+          FontStyle.normal)),);
 
   Widget _buildBody() => BlocProvider(
         create: (_) => sl<MealsDetailBloc>()

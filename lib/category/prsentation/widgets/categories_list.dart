@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/core/style/colors.dart';
-import 'package:meals_app/core/utils/navigate_to.dart';
 import 'package:meals_app/core/utils/text.dart';
 import '../../data/models/category_model.dart';
 import '../pages/meal_page.dart';
@@ -17,7 +16,7 @@ class CategoriesList extends StatelessWidget {
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: 0.8,
+          childAspectRatio: 0.82,
           crossAxisSpacing: 10.0,
           mainAxisSpacing: 10.0,
         ),
@@ -26,7 +25,7 @@ class CategoriesList extends StatelessWidget {
             onTap: () => Navigator.push(context, MaterialPageRoute
             (builder:(context)=>MealPage(strCategory: categories[index].strCategory ??"the value is null" )),),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
+              borderRadius: BorderRadius.circular(17.0),
               child: Card(
                 elevation: 3,
                 child: Padding(
@@ -34,7 +33,7 @@ class CategoriesList extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        width: 140,
+                        width: 150,
                         height: 140,
                         child: Image.network(categories[index].strCategoryThumb ??""),
                       ),
@@ -42,7 +41,7 @@ class CategoriesList extends StatelessWidget {
                       txt(
                         MyColors.Black,
                         categories[index].strCategory ?? " ",
-                        17,
+                        18,
                         FontWeight.w500,
                         FontStyle.normal,
                       ),

@@ -12,7 +12,7 @@ class MealModel {
   MealModel({
     required this.idMeal,
     required this.strMeal,
-     required this.strDrinkAlternate,
+    required this.strDrinkAlternate,
     required this.strCategory,
     required this.strArea,
     required this.strInstructions,

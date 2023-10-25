@@ -1,20 +1,24 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:meals_app/category/prsentation/pages/home_page.dart';
-import 'package:meals_app/category/prsentation/widgets/meals_list.dart';
 import 'package:meals_app/core/style/colors.dart';
-
-import '../../../core/utils/navigate_to.dart';
+import 'package:readmore/readmore.dart';
 import '../../../core/utils/text.dart';
 import '../../data/models/meal_model.dart';
-import '../../domain/entities/meal.dart';
-
-class MealDetailWidget extends StatelessWidget{
+//webview_flutter: ^4.4.1
+//   webview_flutter_android: ^3.12.0
+class MealDetailWidget extends StatelessWidget {
   final MealModel meal;
-  const MealDetailWidget({super.key, required this.meal});
+
+  const MealDetailWidget({Key? key, required this.meal}) : super(key: key);
+
+  void _openYouTubeLink(BuildContext context, String? youtubeLink) {
+    if (youtubeLink != null && youtubeLink.isNotEmpty) {
+
+      print('Opening YouTube link: $youtubeLink');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(' ${meal.strMealThumb}');
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -23,15 +27,15 @@ class MealDetailWidget extends StatelessWidget{
               Container(
                 height: 330,
                 width: double.infinity,
-                decoration:  BoxDecoration(
-                  image: DecorationImage( image:NetworkImage(meal.strMealThumb??"" ),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(meal.strMealThumb ?? ""),
                     fit: BoxFit.fill,
                   ),
                 ),
-
               ),
-              Padding(
-                padding: const EdgeInsets.only(
+              const Padding(
+                padding: EdgeInsets.only(
                   top: 45.0,
                   left: 20,
                 ),
@@ -39,15 +43,6 @@ class MealDetailWidget extends StatelessWidget{
                   children: [
                     Material(
                       color: Colors.transparent,
-                      child: IconButton(
-                        onPressed: () {
-                        //   navigateTo(context, HomePage(categories: categories));
-                        },
-                        icon: const Icon(
-                          Icons.arrow_back_ios_new,
-                          color: Colors.white,
-                        ),
-                      ),
                     ),
                   ],
                 ),
@@ -55,7 +50,7 @@ class MealDetailWidget extends StatelessWidget{
               Padding(
                 padding: const EdgeInsets.only(top: 270.0),
                 child: Container(
-                  height: 480,
+                  height: 300,
                   width: double.infinity,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -69,31 +64,68 @@ class MealDetailWidget extends StatelessWidget{
                       top: 20.0,
                       left: 25,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        txt(Colors.black, meal.strMeal??'', 20, FontWeight.w600 , FontStyle.normal),
-                        const SizedBox(height: 5),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        txt(MyColors.LightGrey1, meal.strArea??'', 15, FontWeight.w500 , FontStyle.normal),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        txt(MyColors.LightGrey1, meal.strDrinkAlternate??'', 15, FontWeight.w500 , FontStyle.normal),
-                        SizedBox(
-                          width: 5,
-                        ),
-                     //   txt(MyColors.LightGrey1, meal.strInstructions??'', 15, FontWeight.w500 , FontStyle.normal),
-                     //   const SizedBox(
-                     //     height: 17,
-                     //   ),
-                     //   SizedBox(height: 40),
-                      ],
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          txt(MyColors.Black, meal.strMeal ?? '', 22, FontWeight.w600, FontStyle.normal),
+                      const SizedBox(height: 5),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.location_on, color: MyColors.DarkGrey2, size: 28),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: txt(MyColors.DarkGrey, meal.strArea ?? '', 18, FontWeight.w600, FontStyle.normal),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      txt(MyColors.DarkGrey, "Instractions : ", 16, FontWeight.w600, FontStyle.normal),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      ReadMoreText(
+                        meal.strInstructions ?? '',
+                        trimLines: 4,
+                        colorClickableText: MyColors.DarkGrey,
+                        trimMode: TrimMode.Line,
+                        trimCollapsedText: 'Show more',
+                        trimExpandedText: 'Show less',
+                        moreStyle: TextStyle(fontSize: 15, color: MyColors.blue, fontWeight: FontWeight.bold),
+                        lessStyle: TextStyle(fontSize: 15, color: MyColors.red, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 17,
+                      ),
+                      txt(MyColors.DarkGrey, "Youtube links for the recipe : ", 16, FontWeight.w600, FontStyle.normal),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                          InkWell(
+                            onTap: () {
+                              _openYouTubeLink(context, meal.strYoutube);
+                            },
+                            child: Text(
+                              meal.strYoutube ?? '',
+                              style: const TextStyle(
+                                color: MyColors.blue,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                fontStyle: FontStyle.normal,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -104,5 +136,4 @@ class MealDetailWidget extends StatelessWidget{
       ),
     );
   }
-
 }

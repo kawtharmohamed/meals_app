@@ -4,7 +4,6 @@ import 'package:meals_app/category/prsentation/bloc/category/category_bloc.dart'
 import 'package:meals_app/category/prsentation/bloc/category/categorymeal_state.dart';
 import 'package:meals_app/category/prsentation/widgets/categories_list.dart';
 import 'package:meals_app/category/prsentation/widgets/loading_widget.dart';
-
 import '../bloc/category/categorymeal_event.dart';
 import '../widgets/message_display_widget.dart';
 

@@ -17,14 +17,4 @@ final appTheme = ThemeData(
       backgroundColor: MyColors.darkYellow,
       foregroundColor: MyColors.White,
     ),
-    inputDecorationTheme: InputDecorationTheme(
-        floatingLabelStyle: const TextStyle(color: MyColors.darkYellow),
-        iconColor: MyColors.White,
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: MyColors.White),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        border: OutlineInputBorder(
-          borderSide: const BorderSide(color: MyColors.darkYellow),
-          borderRadius: BorderRadius.circular(8),
-        )));
+);

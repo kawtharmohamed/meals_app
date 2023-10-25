@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
   AppBar _bulidAppBar() => AppBar(
     title: SizedBox(
         width: 300,
-        child: txt(MyColors.White, "Food Fusion", 20, FontWeight.w600,
+        child: txt(MyColors.White, "Food Fusion", 22, FontWeight.w600,
             FontStyle.normal)),
     bottom: TabBar(
       indicatorColor: MyColors.White,
