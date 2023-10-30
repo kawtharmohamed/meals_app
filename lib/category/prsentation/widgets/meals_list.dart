@@ -160,7 +160,7 @@ class _MealsListState extends State<MealsList> {
                           icon: Icon(
                             Icons.favorite,
                             color: isFavorite ? MyColors.red : MyColors.White,
-                            size: 20,
+                            size: 23,
                           ),
                           onPressed: () {
                             FavoriteIcon(index);
@@ -197,16 +197,16 @@ class _MealsListState extends State<MealsList> {
   void FavoriteIcon(int index) async {
     if (favorites.contains(index)) {
       favorites.remove(index);
-      String? idToDelete = filteredMeals[index].idMeal;
+      String? idToDelete = filteredMeals[index].idMeal??'';
         await sql.deleteData("DELETE FROM meals WHERE id = $idToDelete");
     } else {
       favorites.add(index);
       await sql.insertData('''
       INSERT INTO meals (`id`, `name`, `image`)
       VALUES (
-        "${filteredMeals[index].idMeal}",
-        "${filteredMeals[index].strMeal}",
-        "${filteredMeals[index].strMealThumb}"
+        "${filteredMeals[index].idMeal??''}",
+        "${filteredMeals[index].strMeal??''}",
+        "${filteredMeals[index].strMealThumb??''}"
       )
     ''');
     }

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meals_app/core/style/colors.dart';
@@ -40,7 +42,7 @@ class FavouritePage extends StatelessWidget {
                           ),
                           title: txt(MyColors.Black, "${snapshot.data![index]['name']}",
                               17, FontWeight.w600, FontStyle.normal),
-                         /* trailing: IconButton(onPressed: () async {
+                       /*   trailing: IconButton(onPressed: () async {
                             int response =
                                 await sql.deleteData("DELETE FROM meals WHERE id="
                                     " ${snapshot.data![index]['id']}");
@@ -62,5 +64,3 @@ class FavouritePage extends StatelessWidget {
     );
   }
 }
-
-

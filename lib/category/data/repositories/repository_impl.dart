@@ -1,7 +1,7 @@
 import 'package:meals_app/category/data/datasources/remote_data_source.dart';
 import 'package:meals_app/category/data/models/category_model.dart';
 import 'package:meals_app/category/data/models/meal_model.dart';
-import 'package:meals_app/category/domain/repositories/categories_repositories.dart';
+import 'package:meals_app/category/domain/repositories/repository.dart';
 import '../../../core/network/network.dart';
 
 class RepositoryImpl implements Repository {
@@ -16,7 +16,7 @@ class RepositoryImpl implements Repository {
       final remoteCategory = await remoteDataSource.getAllCategories();
       return remoteCategory;
     } else {
-      throw Exception('No internet connection');
+      throw Exception();
     }
   }
 
@@ -26,7 +26,7 @@ class RepositoryImpl implements Repository {
       final remoteMeal = await remoteDataSource.getAllMeals(strCategory);
       return remoteMeal;
     } else {
-      throw Exception('No internet connection');
+      throw Exception();
     }
   }
 
@@ -36,7 +36,7 @@ class RepositoryImpl implements Repository {
       final remoteDetailMeal = await remoteDataSource.getMealById(idMeal);
       return remoteDetailMeal;
     } else {
-      throw Exception('No internet connection');
+      throw Exception();
     }
   }
 }

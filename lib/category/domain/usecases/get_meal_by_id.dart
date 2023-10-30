@@ -1,4 +1,4 @@
-import 'package:meals_app/category/domain/repositories/categories_repositories.dart';
+import 'package:meals_app/category/domain/repositories/repository.dart';
 import '../../data/models/meal_model.dart';
 class GetMealByIdUsecase{
    final Repository repository;

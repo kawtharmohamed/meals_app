@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:meals_app/category/data/datasources/remote_data_source.dart';
 import 'package:meals_app/category/data/repositories/repository_impl.dart';
-import 'package:meals_app/category/domain/repositories/categories_repositories.dart';
+import 'package:meals_app/category/domain/repositories/repository.dart';
 import 'package:meals_app/category/domain/usecases/get_all_categories.dart';
 import 'package:meals_app/category/domain/usecases/get_all_meals.dart';
 import 'package:meals_app/category/domain/usecases/get_meal_by_id.dart';
