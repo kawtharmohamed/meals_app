@@ -198,17 +198,16 @@ class _MealsListState extends State<MealsList> {
     if (favorites.contains(index)) {
       favorites.remove(index);
       String? idToDelete = filteredMeals[index].idMeal??'';
-        await sql.deleteData("DELETE FROM meals WHERE id = $idToDelete");
+        await sql.deleteData("meals", "id=${idToDelete}");
     } else {
       favorites.add(index);
-      await sql.insertData('''
-      INSERT INTO meals (`id`, `name`, `image`)
-      VALUES (
-        "${filteredMeals[index].idMeal??''}",
-        "${filteredMeals[index].strMeal??''}",
-        "${filteredMeals[index].strMealThumb??''}"
-      )
-    ''');
+      await sql.insertData("meals",
+        {
+          "name":"${filteredMeals[index].strMeal??''}",
+          "image": "${filteredMeals[index].strMealThumb??''}",
+          "id":"${filteredMeals[index].idMeal??''}"
+        }
+      );
     }
     saveFavorites();
     setState(() {});

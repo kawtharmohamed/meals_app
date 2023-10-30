@@ -11,7 +11,7 @@ class FavouritePage extends StatelessWidget {
   SqlDB sql = SqlDB();
 
   Future<List<Map>> readData() async {
-    List<Map> response = await sql.readData("SELECT * FROM meals");
+    List<Map> response = await sql.readData("meals");
     return response;
   }
 
