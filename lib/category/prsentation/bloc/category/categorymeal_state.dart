@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:equatable/equatable.dart';
 import 'package:meals_app/category/data/models/meal_model.dart';
 
@@ -33,14 +35,9 @@ class LoadedMealsDetailState extends CategoriesMealsStates {
 class ErrorState extends CategoriesMealsStates {
   final String message;
 
-  ErrorState({required this.message});
-  @override
-  List<Object> get props => [message];
-}
-class MessageState extends CategoriesMealsStates {
-  final String message;
+  ErrorState({required this.message,
+  });
 
-  MessageState({required this.message});
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [message ];
 }

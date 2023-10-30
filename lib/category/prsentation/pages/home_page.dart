@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
         width: 300,
         child: txt(MyColors.White, "Food Fusion", 22, FontWeight.w600,
             FontStyle.normal)),
-    bottom: TabBar(
+    bottom: const TabBar(
       indicatorColor: MyColors.White,
       labelColor: MyColors.White,
       tabs: [

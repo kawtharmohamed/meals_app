@@ -11,14 +11,21 @@ class CategoriesBloc extends Bloc<CategoriesMealsEvents, CategoriesMealsStates> 
   on<CategoriesMealsEvents>((event, emit) async {
    if (event is AllCategoriesEvent) {
     emit(LoadingState());
-    final categories = await getAllCategories();
-    emit(LoadedCategoriesState(categories: categories));
+    try {
+     final categories = await getAllCategories();
+     emit(LoadedCategoriesState(categories: categories));
+    } catch (e){
+     emit( ErrorState(message: "No Internet Connection"));
+    }
    } else if (event is RefreshEvent) {
     emit(LoadingState());
-    final categories = await getAllCategories();
-    emit(LoadedCategoriesState(categories: categories));
+    try {
+     final categories = await getAllCategories();
+     emit(LoadedCategoriesState(categories: categories));
+    } catch (e){
+     emit( ErrorState(message: "No Internet Connection"));
+    }
    }
-   //emit(ErrorCategoriesState(message: message));
   });
  }
 }

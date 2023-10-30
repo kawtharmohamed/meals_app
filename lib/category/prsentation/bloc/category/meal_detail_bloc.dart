@@ -14,14 +14,23 @@ class MealsDetailBloc extends Bloc<CategoriesMealsEvents, CategoriesMealsStates>
       if (event is MealByIdEvent) {
         emit(LoadingState());
         idMeal = event.idMeal;
-        final meal = await getMealById(idMeal);
-        emit( LoadedMealsDetailState(meal: meal));
+        try {
+          final meal = await getMealById(idMeal);
+          emit( LoadedMealsDetailState(meal: meal));
+        } catch(e) {
+          emit(ErrorState(message: "No Internet Connection"));
+        }
       } else if (event is RefreshEvent) {
         emit(LoadingState());
-        final meal = await getMealById(idMeal);
-        emit( LoadedMealsDetailState(meal: meal));
+        try {
+          final meal = await getMealById(idMeal);
+          emit(LoadedMealsDetailState(meal:meal));
+        } catch (e) {
+          emit(ErrorState(
+            message: 'No Internet Connection.',
+          ));
+        }
       }
-      //emit(ErrorCategoriesState(message: message));
     });
   }
 }

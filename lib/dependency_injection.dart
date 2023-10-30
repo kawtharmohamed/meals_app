@@ -9,10 +9,12 @@ import 'package:meals_app/category/prsentation/bloc/category/category_bloc.dart'
 import 'package:meals_app/category/prsentation/bloc/category/meal_bloc.dart';
 import 'package:meals_app/category/prsentation/bloc/category/meal_detail_bloc.dart';
 import 'package:http/http.dart' as http;
+import 'package:meals_app/core/network/network.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 final sl =GetIt.instance;
 Future <void> init () async {
   sl.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl(sl()));
-  sl.registerLazySingleton<Repository>(() => RepositoryImpl(sl()));
+  sl.registerLazySingleton<Repository>(() => RepositoryImpl(sl() , sl()));
   sl.registerFactory(() =>CategoriesBloc(getAllCategories: sl()));
   sl.registerFactory(() => MealsBloc(getAllMeals: sl()));
   sl.registerFactory(() => MealsDetailBloc(getMealById: sl(),));
@@ -20,4 +22,7 @@ Future <void> init () async {
   sl.registerLazySingleton(() => GetAllMealsUsecase(sl()));
   sl.registerLazySingleton(() => GetMealByIdUsecase(sl()));
   sl.registerLazySingleton(() => http.Client());
+  final shared = await SharedPreferences.getInstance();
+  sl.registerLazySingleton(() => shared);
+  sl.registerLazySingleton(() => Network());
 }

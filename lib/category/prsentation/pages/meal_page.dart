@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meals_app/category/data/models/meal_model.dart';
 import 'package:meals_app/category/prsentation/bloc/category/categorymeal_event.dart';
 import 'package:meals_app/category/prsentation/bloc/category/categorymeal_state.dart';
 import 'package:meals_app/category/prsentation/bloc/category/meal_bloc.dart';
-import 'package:meals_app/category/prsentation/widgets/loading_widget.dart';
 import 'package:meals_app/category/prsentation/widgets/meals_list.dart';
-import 'package:meals_app/category/prsentation/widgets/message_display_widget.dart';
 import '../../../core/style/colors.dart';
+import '../../../core/utils/loading_widget.dart';
 import '../../../core/utils/text.dart';
 import '../../../dependency_injection.dart';
 
@@ -31,31 +29,42 @@ class _MealPageState extends State<MealPage> {
     );
   }
 
-  AppBar _buildAppBar() => AppBar( elevation: 0.0,
-    title: SizedBox(
-      width: 300,
-      child: txt(MyColors.White, "Meals", 22, FontWeight.w500, FontStyle.normal),
-    ),
-  );
+  AppBar _buildAppBar() => AppBar(
+        elevation: 0.0,
+        title: SizedBox(
+          width: 300,
+          child: txt(
+              MyColors.White, "Meals", 22, FontWeight.w500, FontStyle.normal),
+        ),
+      );
 
   Widget _buildBody() => BlocProvider<MealsBloc>(
-    create: (_) =>
-        sl<MealsBloc>()..add(AllMealsEvent(strCategory: widget.strCategory)),
-    child: BlocConsumer<MealsBloc, CategoriesMealsStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          if (state is LoadingState) {
+        create: (_) => sl<MealsBloc>()
+          ..add(AllMealsEvent(strCategory: widget.strCategory)),
+        child: BlocConsumer<MealsBloc, CategoriesMealsStates>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            if (state is ErrorState) {
+              return AlertDialog(
+                title: Text("No Internet Connection"),
+                actions: [
+                  ElevatedButton(
+                    onPressed: () {
+                      _onRefresh(context);
+                    },
+                    child: Text("Refresh"),
+                  ),
+                ],
+              );
+            } else if (state is LoadedMealsState) {
+              return RefreshIndicator(
+                  onRefresh: () => _onRefresh(context),
+                  child: MealsList(meals: state.meals));
+            }
             return LoadingWidget();
-          } else if (state is LoadedMealsState) {
-            return RefreshIndicator(
-                onRefresh: () => _onRefresh(context),
-                child: MealsList(meals: state.meals));
-          } else if (state is ErrorState) {
-            return MessageDisplayWidget(message: state.message);
-          }
-          return LoadingWidget();
-        }),
-  );
+          },
+        ),
+      );
 
   Future<void> _onRefresh(BuildContext context) async {
     BlocProvider.of<MealsBloc>(context).add(RefreshEvent());

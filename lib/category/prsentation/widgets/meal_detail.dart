@@ -3,19 +3,12 @@ import 'package:meals_app/core/style/colors.dart';
 import 'package:readmore/readmore.dart';
 import '../../../core/utils/text.dart';
 import '../../data/models/meal_model.dart';
-//webview_flutter: ^4.4.1
-//   webview_flutter_android: ^3.12.0
+import 'package:url_launcher/url_launcher.dart';
+
 class MealDetailWidget extends StatelessWidget {
   final MealModel meal;
 
   const MealDetailWidget({Key? key, required this.meal}) : super(key: key);
-
-  void _openYouTubeLink(BuildContext context, String? youtubeLink) {
-    if (youtubeLink != null && youtubeLink.isNotEmpty) {
-
-      print('Opening YouTube link: $youtubeLink');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +41,9 @@ class MealDetailWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 270.0),
+                padding: const EdgeInsets.only(top: 220.0),
                 child: Container(
-                  height: 300,
+                  height: 370,
                   width: double.infinity,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -68,61 +61,80 @@ class MealDetailWidget extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          txt(MyColors.Black, meal.strMeal ?? '', 22, FontWeight.w600, FontStyle.normal),
-                      const SizedBox(height: 5),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.location_on, color: MyColors.DarkGrey2, size: 28),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15.0),
-                            child: txt(MyColors.DarkGrey, meal.strArea ?? '', 18, FontWeight.w600, FontStyle.normal),
+                          txt(MyColors.Black, meal.strMeal ?? '', 21,
+                              FontWeight.w600, FontStyle.normal),
+                          const SizedBox(height: 5),
+                          const SizedBox(
+                            height: 15,
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      txt(MyColors.DarkGrey, "Instractions : ", 16, FontWeight.w600, FontStyle.normal),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      ReadMoreText(
-                        meal.strInstructions ?? '',
-                        trimLines: 4,
-                        colorClickableText: MyColors.DarkGrey,
-                        trimMode: TrimMode.Line,
-                        trimCollapsedText: 'Show more',
-                        trimExpandedText: 'Show less',
-                        moreStyle: TextStyle(fontSize: 15, color: MyColors.blue, fontWeight: FontWeight.bold),
-                        lessStyle: TextStyle(fontSize: 15, color: MyColors.red, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 17,
-                      ),
-                      txt(MyColors.DarkGrey, "Youtube links for the recipe : ", 16, FontWeight.w600, FontStyle.normal),
-                      const SizedBox(
-                        height: 15,
-                      ),
+                          Row(
+                            children: [
+                              const Icon(Icons.location_on,
+                                  color: MyColors.Black, size: 26),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15.0),
+                                child: txt(
+                                    MyColors.darkGrey,
+                                    meal.strArea ?? '',
+                                    17,
+                                    FontWeight.w500,
+                                    FontStyle.normal),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          txt(MyColors.Black, "Recipe : ", 17, FontWeight.w600,
+                              FontStyle.normal),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          ReadMoreText(
+                            meal.strInstructions ?? '',
+                            style: const TextStyle(
+                                color: MyColors.darkGrey, fontSize: 16),
+                            trimLines: 5,
+                            colorClickableText: MyColors.darkGrey,
+                            trimMode: TrimMode.Line,
+                            trimCollapsedText: 'Show more',
+                            trimExpandedText: 'Show less',
+                            moreStyle: const TextStyle(
+                                fontSize: 15,
+                                color: MyColors.blue,
+                                fontWeight: FontWeight.bold),
+                            lessStyle: const TextStyle(
+                                fontSize: 15,
+                                color: MyColors.red,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            height: 17,
+                          ),
+                          txt(MyColors.Black, "Way of the recipe : ", 17,
+                              FontWeight.w600, FontStyle.normal),
+                          const SizedBox(
+                            height: 15,
+                          ),
                           InkWell(
-                            onTap: () {
-                              _openYouTubeLink(context, meal.strYoutube);
-                            },
+                            onTap: () =>
+                                launchUrl(Uri.parse(meal.strYoutube ?? '')),
                             child: Text(
                               meal.strYoutube ?? '',
                               style: const TextStyle(
                                 color: MyColors.blue,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
                                 fontStyle: FontStyle.normal,
                                 decoration: TextDecoration.underline,
                               ),
                             ),
+                          ),
+                          const SizedBox(
+                            height: 15,
                           ),
                         ],
                       ),

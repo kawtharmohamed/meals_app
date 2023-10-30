@@ -1,19 +1,9 @@
- /* import 'dart:async';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
-
-class CheckNetwork{
-  StreamSubscription? subscription;
-
-   subscription = Connectivity().
-  onConnectivityChanged.listen((ConnectivityResult result) {
-    if (result == ConnectivityResult.wifi ||
-    result == ConnectivityResult.mobile ||
-  result == ConnectivityResult.other) {
+class Network {
+ final Connectivity connectivity = Connectivity() ;
+  Future <bool> isConnected () async {
+    final result = await  connectivity.checkConnectivity();
+    return result == ConnectivityResult.wifi || result== ConnectivityResult.mobile ;
 
   }
-
-  });
 }
-
-  */
