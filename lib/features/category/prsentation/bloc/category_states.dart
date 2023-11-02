@@ -17,11 +17,11 @@ class LoadedCategoriesState extends CategoriesStates {
 }
 
 class ErrorState extends CategoriesStates {
-  final String message;
+/*  final String message;
 
   ErrorState({required this.message,
   });
 
   @override
-  List<Object> get props => [message ];
+  List<Object> get props => [message ];*/
 }

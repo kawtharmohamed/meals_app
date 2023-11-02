@@ -15,14 +15,16 @@ class SqlDB {
   initialDb() async {
     String databasepath = await getDatabasesPath();
     String path = join(databasepath, 'meals.db');
-    Database mydb = await openDatabase(path, onCreate: _onCreate , version:  2 , onUpgrade: _onUpgrade );
+    Database mydb = await openDatabase(path,
+        onCreate: _onCreate, version: 2, onUpgrade: _onUpgrade);
     return mydb;
   }
-  _onUpgrade(Database db, int oldversion , int newversion ) async  {
-    print("on upgradeeeee");
-   // await db.execute("ALTER TABLE meals ADD COLUMN");
 
+  _onUpgrade(Database db, int oldversion, int newversion) async {
+    print("on upgradeeeee");
+    // await db.execute("ALTER TABLE meals ADD COLUMN");
   }
+
   _onCreate(Database db, int version) async {
     await db.execute('''
     CREATE TABLE meals (
@@ -34,25 +36,25 @@ class SqlDB {
     print("on createeeee");
   }
 
-
   readData(String table) async {
     Database? mydb = await db;
     List<Map> response = await mydb!.query(table);
     return response;
   }
 
-  insertData(String table , Map < String , Object?>values ) async {
+  insertData(String table, Map<String, Object?> values) async {
     Database? mydb = await db;
     int response = await mydb!.insert(table, values);
     return response;
   }
 
-  deleteData(String table , String? mywhere) async {
+  deleteData(String table, String? mywhere) async {
     Database? mydb = await db;
-    int response = await mydb!.delete(table , where: mywhere);
+    int response = await mydb!.delete(table, where: mywhere);
     return response;
   }
-  mydeleteDatabase () async {
+
+  mydeleteDatabase() async {
     String databasepath = await getDatabasesPath();
     String path = join(databasepath, 'meals.db');
     await deleteDatabase(path);

@@ -16,7 +16,7 @@ class MealsDetailBloc extends Bloc<MealDetailEvents, MealDetailStates> {
           final meal = await getMealById(idMeal);
           emit( LoadedMealsDetailState(meal: meal));
         } catch(e) {
-          emit(ErrorState(message: "No Internet Connection"));
+          emit(ErrorState());
         }
       } else if (event is RefreshMealDetailEvent) {
         emit(LoadingState());
@@ -24,9 +24,7 @@ class MealsDetailBloc extends Bloc<MealDetailEvents, MealDetailStates> {
           final meal = await getMealById(idMeal);
           emit(LoadedMealsDetailState(meal:meal));
         } catch (e) {
-          emit(ErrorState(
-            message: 'No Internet Connection.',
-          ));
+          emit(ErrorState());
         }
       }
     });

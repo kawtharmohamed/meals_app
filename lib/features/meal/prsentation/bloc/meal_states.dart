@@ -19,11 +19,4 @@ class LoadedMealsState extends MealsStates {
 }
 
 class ErrorState extends MealsStates {
-  final String message;
-
-  ErrorState({required this.message,
-  });
-
-  @override
-  List<Object> get props => [message ];
 }

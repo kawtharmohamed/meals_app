@@ -18,8 +18,8 @@ class RemoteDataCategoryImpl extends RemoteDataCategory {
     if (response.statusCode == 200) {
       final decodedJson = json.decode(response.body)["categories"] as List;
       final List<CategoryModel> categoryModels = decodedJson
-          .map<CategoryModel>((jsonCategoryModel) =>
-          CategoryModel.fromJson(jsonCategoryModel))
+          .map<CategoryModel>(
+              (jsonCategoryModel) => CategoryModel.fromJson(jsonCategoryModel))
           .toList();
       return categoryModels;
     } else {

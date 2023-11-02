@@ -14,7 +14,7 @@ class CategoriesBloc extends Bloc<CategoriesEvents, CategoriesStates> {
      final categories = await getAllCategories();
      emit(LoadedCategoriesState(categories: categories));
     } catch (e){
-     emit( ErrorState(message: "No Internet Connection"));
+     emit( ErrorState());
     }
    } else if (event is CategoryRefreshEvent) {
     emit(LoadingState());
@@ -22,7 +22,7 @@ class CategoriesBloc extends Bloc<CategoriesEvents, CategoriesStates> {
      final categories = await getAllCategories();
      emit(LoadedCategoriesState(categories: categories));
     } catch (e){
-     emit( ErrorState(message: "No Internet Connection"));
+     emit( ErrorState());
     }
    }
   });
