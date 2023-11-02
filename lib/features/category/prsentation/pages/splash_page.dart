@@ -2,8 +2,8 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:meals_app/core/style/colors.dart';
-import 'package:meals_app/core/utils/text.dart';
 
+import '../../../../core/widgets/text.dart';
 import 'home_page.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -20,8 +20,9 @@ class SplashScreen extends StatelessWidget {
             height: 170,
           ),
           Padding(
-            padding:const EdgeInsets.only(top: 10.0),
-            child: txt(MyColors.Black, "Food Fusion", 27, FontWeight.w600, FontStyle.italic),
+            padding: const EdgeInsets.only(top: 10.0),
+            child: txt(MyColors.Black, "Food Fusion", 27, FontWeight.w600,
+                FontStyle.italic),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 120.0),
@@ -32,7 +33,7 @@ class SplashScreen extends StatelessWidget {
           ),
         ],
       ),
-      nextScreen:const HomePage(),
+      nextScreen: const HomePage(),
       duration: 2500,
       backgroundColor: MyColors.darkYellow,
       splashTransition: SplashTransition.fadeTransition,

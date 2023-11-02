@@ -14,15 +14,15 @@ class MealsDetailBloc extends Bloc<MealDetailEvents, MealDetailStates> {
         idMeal = event.idMeal;
         try {
           final meal = await getMealById(idMeal);
-          emit( LoadedMealsDetailState(meal: meal));
-        } catch(e) {
+          emit(LoadedMealsDetailState(meal: meal));
+        } catch (e) {
           emit(ErrorState());
         }
       } else if (event is RefreshMealDetailEvent) {
         emit(LoadingState());
         try {
           final meal = await getMealById(idMeal);
-          emit(LoadedMealsDetailState(meal:meal));
+          emit(LoadedMealsDetailState(meal: meal));
         } catch (e) {
           emit(ErrorState());
         }

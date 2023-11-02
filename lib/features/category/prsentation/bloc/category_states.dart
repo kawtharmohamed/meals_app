@@ -16,12 +16,4 @@ class LoadedCategoriesState extends CategoriesStates {
   List<Object> get props => [categories];
 }
 
-class ErrorState extends CategoriesStates {
-/*  final String message;
-
-  ErrorState({required this.message,
-  });
-
-  @override
-  List<Object> get props => [message ];*/
-}
+class ErrorState extends CategoriesStates {}

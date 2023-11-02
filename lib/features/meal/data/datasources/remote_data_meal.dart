@@ -12,7 +12,6 @@ class RemoteDataMealImpl extends RemoteDataMeal {
 
   RemoteDataMealImpl(this.client);
 
-
   @override
   Future<List<MealModel>> getAllMeals(String strCategory) async {
     final response = await client.get(Uri.parse('$allMeals$strCategory'));
@@ -27,5 +26,4 @@ class RemoteDataMealImpl extends RemoteDataMeal {
       throw Exception("Failed to fetch meals");
     }
   }
-
 }

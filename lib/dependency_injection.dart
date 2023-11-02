@@ -17,17 +17,25 @@ import 'features/meal/prsentation/bloc/meal_bloc.dart';
 import 'features/meal_detail/data/repositories/repository_impl.dart';
 import 'features/meal_detail/domain/usecases/get_meal_by_id.dart';
 import 'features/meal_detail/prsentation/bloc/meal_detail_bloc.dart';
-final sl =GetIt.instance;
-Future <void> init () async {
-  sl.registerLazySingleton<RemoteDataMealDetail>(() => RemoteDataMealDetailImpl(sl()));
+
+final sl = GetIt.instance;
+Future<void> init() async {
+  sl.registerLazySingleton<RemoteDataMealDetail>(
+      () => RemoteDataMealDetailImpl(sl()));
   sl.registerLazySingleton<RemoteDataMeal>(() => RemoteDataMealImpl(sl()));
-  sl.registerLazySingleton<RemoteDataCategory>(() => RemoteDataCategoryImpl(sl()));
-  sl.registerLazySingleton<CategoryRepository>(() => CategoryRepositoryImpl(sl() , sl()));
-  sl.registerLazySingleton<MealRepository>(() => MealRepositoryImpl(sl() , sl()));
-  sl.registerLazySingleton<MealDetailRepository>(() => MealDetailRepositoryImpl(sl() , sl()));
-  sl.registerFactory(() =>CategoriesBloc(getAllCategories: sl()));
+  sl.registerLazySingleton<RemoteDataCategory>(
+      () => RemoteDataCategoryImpl(sl()));
+  sl.registerLazySingleton<CategoryRepository>(
+      () => CategoryRepositoryImpl(sl(), sl()));
+  sl.registerLazySingleton<MealRepository>(
+      () => MealRepositoryImpl(sl(), sl()));
+  sl.registerLazySingleton<MealDetailRepository>(
+      () => MealDetailRepositoryImpl(sl(), sl()));
+  sl.registerFactory(() => CategoriesBloc(getAllCategories: sl()));
   sl.registerFactory(() => MealsBloc(getAllMeals: sl()));
-  sl.registerFactory(() => MealsDetailBloc(getMealById: sl(),));
+  sl.registerFactory(() => MealsDetailBloc(
+        getMealById: sl(),
+      ));
   sl.registerLazySingleton(() => GetAllCategoriesUsecase(sl()));
   sl.registerLazySingleton(() => GetAllMealsUsecase(sl()));
   sl.registerLazySingleton(() => GetMealByIdUsecase(sl()));

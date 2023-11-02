@@ -7,7 +7,7 @@ class MealRepositoryImpl implements MealRepository {
   final RemoteDataMeal remoteDataMeal;
   final Network network;
 
-  MealRepositoryImpl(this.remoteDataMeal  , this.network);
+  MealRepositoryImpl(this.remoteDataMeal, this.network);
 
   @override
   Future<List<MealModel>> getAllMeals(String strCategory) async {
@@ -18,5 +18,4 @@ class MealRepositoryImpl implements MealRepository {
       throw Exception();
     }
   }
-
 }

@@ -44,7 +44,7 @@ class _MealsListState extends State<MealsList> {
 
   void saveFavorites() {
     final List<String> favoriteIndices =
-    favorites.map((index) => index.toString()).toList();
+        favorites.map((index) => index.toString()).toList();
     shared.setStringList('favoriteIndices', favoriteIndices);
   }
 
@@ -182,7 +182,7 @@ class _MealsListState extends State<MealsList> {
     setState(() {
       filteredMeals = widget.meals
           .where((character) =>
-          character.strMeal!.toLowerCase().startsWith(searchedCharacter))
+              character.strMeal!.toLowerCase().startsWith(searchedCharacter))
           .toList();
     });
   }
@@ -193,20 +193,19 @@ class _MealsListState extends State<MealsList> {
       filterMeals('');
     });
   }
+
   void FavoriteIcon(int index) async {
     if (favorites.contains(index)) {
       favorites.remove(index);
-      String? idToDelete = filteredMeals[index].idMeal??'';
-        await sql.deleteData("meals", "id=${idToDelete}");
+      String? idToDelete = filteredMeals[index].idMeal ?? '';
+      await sql.deleteData("meals", "id=${idToDelete}");
     } else {
       favorites.add(index);
-      await sql.insertData("meals",
-        {
-          "name":"${filteredMeals[index].strMeal??''}",
-          "image": "${filteredMeals[index].strMealThumb??''}",
-          "id":"${filteredMeals[index].idMeal??''}"
-        }
-      );
+      await sql.insertData("meals", {
+        "name": "${filteredMeals[index].strMeal ?? ''}",
+        "image": "${filteredMeals[index].strMealThumb ?? ''}",
+        "id": "${filteredMeals[index].idMeal ?? ''}"
+      });
     }
     saveFavorites();
     setState(() {});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/core/style/colors.dart';
-import 'package:meals_app/core/utils/text.dart';
+import '../../../../core/widgets/text.dart';
 import '../../../meal/prsentation/pages/meal_page.dart';
 import '../../data/models/category_model.dart';
 
@@ -22,8 +22,13 @@ class CategoriesList extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute
-            (builder:(context)=>MealPage(strCategory: categories[index].strCategory ??"the value is null" )),),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MealPage(
+                      strCategory: categories[index].strCategory ??
+                          "the value is null")),
+            ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(17.0),
               child: Card(
@@ -35,7 +40,8 @@ class CategoriesList extends StatelessWidget {
                       Container(
                         width: 150,
                         height: 140,
-                        child: Image.network(categories[index].strCategoryThumb ??""),
+                        child: Image.network(
+                            categories[index].strCategoryThumb ?? ""),
                       ),
                       const SizedBox(height: 10),
                       txt(

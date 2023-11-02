@@ -7,12 +7,11 @@ class MealDetailRepositoryImpl implements MealDetailRepository {
   final RemoteDataMealDetail remoteDataMealDetail;
   final Network network;
 
-  MealDetailRepositoryImpl(this.remoteDataMealDetail  , this.network);
-
+  MealDetailRepositoryImpl(this.remoteDataMealDetail, this.network);
 
   @override
   Future<MealDetailModel> getMealById(String idMeal) async {
-    if ( await network.isConnected()) {
+    if (await network.isConnected()) {
       final remoteDetailMeal = await remoteDataMealDetail.getMealById(idMeal);
       return remoteDetailMeal;
     } else {
