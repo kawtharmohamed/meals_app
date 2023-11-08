@@ -1,5 +1,12 @@
-import '../../data/models/meal_model.dart';
+import 'package:dartz/dartz.dart';
+
+import '../entities/meal.dart';
+
 
 abstract class MealRepository {
-  Future<List<MealModel>> getAllMeals(String strCategory);
+  Future<List<Meal>> getAllMeals(String strCategory);
+  Future <Unit> insertData( Meal meal);
+  Future <List<Meal>> readData();
+  Future <Unit> deleteData(String mealId);
+
 }

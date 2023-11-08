@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../../data/models/meal_detail_model.dart';
+import '../../../meal/domain/entities/meal.dart';
 
 abstract class MealDetailStates extends Equatable {
   MealDetailStates();
@@ -12,7 +12,7 @@ class MealDetailInitial extends MealDetailStates {}
 class LoadingState extends MealDetailStates {}
 
 class LoadedMealsDetailState extends MealDetailStates {
-  final MealDetailModel meal;
+  final Meal meal;
   LoadedMealsDetailState({required this.meal});
   @override
   List<Object> get props => [meal];

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meals_app/core/widgets/alter_dialog.dart';
+import 'package:meals_app/features/category/prsentation/pages/home_page.dart';
 import '../../../../core/style/colors.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../core/widgets/text.dart';
@@ -11,17 +12,9 @@ import '../bloc/meal_events.dart';
 import '../bloc/meal_states.dart';
 import '../widgets/meals_list.dart';
 
-class MealPage extends StatefulWidget {
+class MealPage extends StatelessWidget{
   final String strCategory;
-  MealPage({super.key, required this.strCategory});
-
-  @override
-  State<MealPage> createState() => _MealPageState();
-}
-
-class _MealPageState extends State<MealPage> {
-  TextEditingController search = TextEditingController();
-
+  MealPage({ super.key, required this.strCategory});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,12 +34,15 @@ class _MealPageState extends State<MealPage> {
 
   Widget _buildBody() => BlocProvider<MealsBloc>(
         create: (_) => sl<MealsBloc>()
-          ..add(AllMealsEvent(strCategory: widget.strCategory)),
+          ..add(AllMealsEvent(strCategory: strCategory)),
         child: BlocConsumer<MealsBloc, MealsStates>(
           listener: (context, state) {},
           builder: (context, state) {
             if (state is ErrorState) {
-              return showDialogg(() => _onRefresh(context));
+              return showDialogg(() => _onRefresh(context), () =>
+                  Navigator.pop(context, MaterialPageRoute(builder: (context)=>
+                      HomePage(),
+                       )));
             } else if (state is LoadedMealsState) {
               return RefreshIndicator(
                   onRefresh: () => _onRefresh(context),

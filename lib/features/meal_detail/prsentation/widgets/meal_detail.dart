@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/core/style/colors.dart';
 import 'package:readmore/readmore.dart';
 import '../../../../core/widgets/text.dart';
-import '../../data/models/meal_detail_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../meal/domain/entities/meal.dart';
 
 class MealDetailWidget extends StatelessWidget {
-  final MealDetailModel meal;
+  final Meal meal;
 
   const MealDetailWidget({Key? key, required this.meal}) : super(key: key);
 

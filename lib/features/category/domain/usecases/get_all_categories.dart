@@ -1,11 +1,11 @@
 import 'package:meals_app/features/category/domain/repositories/repository.dart';
-import '../../data/models/category_model.dart';
+import '../entities/category.dart';
 
 class GetAllCategoriesUsecase{
    final CategoryRepository categoryRepository;
 
   GetAllCategoriesUsecase(this.categoryRepository);
-  Future<List<CategoryModel>> call ()async{
+  Future<List<Categoryy>> call ()async{
   return await categoryRepository.getAllCategories();
 }
   }

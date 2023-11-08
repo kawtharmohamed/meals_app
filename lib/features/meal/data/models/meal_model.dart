@@ -1,3 +1,6 @@
+
+import '../../domain/entities/meal.dart';
+
 class MealModel {
   final String? idMeal;
   final String? strMeal;
@@ -21,6 +24,7 @@ class MealModel {
     required this.strYoutube,
 
   });
+
 
   factory MealModel.fromJson(Map<String, dynamic> json) {
     return MealModel(
@@ -47,6 +51,13 @@ class MealModel {
       'strTags': strTags,
       'strYoutube': strYoutube,
     };
+  }
+  Meal toEntity( { bool isFavourite = false}){
+    return Meal( isFavourite: isFavourite, idMeal: idMeal, strMeal: strMeal ?? "",
+        strDrinkAlternate: strDrinkAlternate ?? "", strCategory: strCategory ?? "",
+        strArea: strArea ?? "", strInstructions: strInstructions ??"",
+        strMealThumb: strMealThumb ?? "", strTags: strTags??''
+        , strYoutube: strYoutube??'');
   }
 
 }

@@ -1,6 +1,5 @@
-
-import '../../data/models/category_model.dart';
+import '../entities/category.dart';
 
 abstract class CategoryRepository {
-  Future<List<CategoryModel>> getAllCategories();
+  Future<List<Categoryy>> getAllCategories();
 }

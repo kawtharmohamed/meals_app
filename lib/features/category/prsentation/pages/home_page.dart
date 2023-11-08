@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
           labelColor: MyColors.White,
           tabs: [
             Tab(
-              text: "Home",
+              text: "Categories",
               icon: Icon(Icons.home),
             ),
             Tab(

@@ -1,6 +1,5 @@
-
-import '../../data/models/meal_detail_model.dart';
+import '../../../meal/domain/entities/meal.dart';
 
 abstract class MealDetailRepository {
-  Future<MealDetailModel> getMealById(String idMeal);
+  Future<Meal> getMealById(String idMeal);
 }

@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../../../core/endpoints/end_points.dart';
-import '../models/meal_detail_model.dart';
+import '../../../meal/data/models/meal_model.dart';
 
 abstract class RemoteDataMealDetail {
-  Future<MealDetailModel> getMealById(String idMeal);
+  Future<MealModel> getMealById(String idMeal);
 }
 
 class RemoteDataMealDetailImpl extends RemoteDataMealDetail {
@@ -14,13 +14,13 @@ class RemoteDataMealDetailImpl extends RemoteDataMealDetail {
   RemoteDataMealDetailImpl(this.client);
 
   @override
-  Future<MealDetailModel> getMealById(String idMeal) async {
+  Future<MealModel> getMealById(String idMeal) async {
     final response = await client.get(Uri.parse('$mealById$idMeal'));
     if (response.statusCode == 200) {
       final decodedJson = json.decode(response.body);
       final meals = decodedJson["meals"] as List;
       if (meals.isNotEmpty) {
-        return MealDetailModel.fromJson(meals.first);
+        return MealModel.fromJson(meals.first);
       }
     }
     throw Exception("Failed to fetch meal details");

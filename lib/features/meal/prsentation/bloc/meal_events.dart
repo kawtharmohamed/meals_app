@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../../domain/entities/meal.dart';
+
 abstract class MealsEvents extends Equatable{
   MealsEvents();
   @override
@@ -11,3 +13,18 @@ class AllMealsEvent extends MealsEvents {
 }
 
 class RefreshMealEvent extends MealsEvents{}
+class AddMealEvent extends MealsEvents{
+  final Meal meal;
+  AddMealEvent({required this.meal});
+  @override
+  List<Object> get props => [meal];
+
+}
+class DeleteMealEvent extends MealsEvents{
+  final String mealId;
+
+  DeleteMealEvent({required this.mealId});
+  @override
+  List<Object> get props => [mealId];
+}
+class ReadMealEvent extends MealsEvents{}
