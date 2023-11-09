@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meals_app/core/style/colors.dart';
 import 'package:meals_app/core/widgets/snack_bar.dart';
 import 'package:meals_app/features/meal/prsentation/widgets/meal_item.dart';
@@ -6,6 +7,8 @@ import 'package:readmore/readmore.dart';
 import '../../../../core/sqflite/sqf.dart';
 import '../../../meal_detail/prsentation/pages/meal_detail_page.dart';
 import '../../domain/entities/meal.dart';
+import '../bloc/meal_bloc.dart';
+import '../bloc/meal_events.dart';
 
 class MealsList extends StatelessWidget{
   final List<Meal> meals;
@@ -42,13 +45,18 @@ class MealsList extends StatelessWidget{
                 ),
                 child: TextField(
                   controller: searchController,
-                //  onChanged: filterMeals,
+                  onChanged: ( String searchedCharacter) {
+                    BlocProvider.of<MealsBloc>(context).add
+                      (SearchEvent(searchedCharacter: searchedCharacter));
+                  },
                   decoration: InputDecoration(
                     hintText: "Find a Meal..",
                     prefixIcon: Icon(Icons.search, size: 22),
                     border: InputBorder.none,
                     suffixIcon: IconButton(
-                      onPressed: (){},
+                      onPressed: () {
+                        searchController.clear();
+                      },
                       icon: Icon(Icons.clear, size: 22),
                     ),
                   ),
@@ -76,36 +84,4 @@ class MealsList extends StatelessWidget{
       ),
     );
   }
-
-  /*void filterMeals(String searchedCharacter) {
-    setState(() {
-      filteredMeals = widget.meals
-          .where((character) =>
-          character.strMeal!.toLowerCase().startsWith(searchedCharacter))
-          .toList();
-    });
-  }
-
-  void clearSearch() {
-    setState(() {
-      searchController.clear();
-      filterMeals('');
-    });
-  }
-
-  void FavoriteIcon(int index, String mealId) async {
-    if (favoriteMealIds.contains(mealId)) {
-      favoriteMealIds.remove(mealId);
-      await sql.deleteData("meals", "id=$mealId");
-    } else {
-      favoriteMealIds.add(mealId);
-      await sql.insertData("meals", {
-        "name": "${filteredMeals[index].strMeal ?? ''}",
-        "image": "${filteredMeals[index].strMealThumb ?? ''}",
-        "id": mealId,
-      });
-      SnackBarMessage().showSuccessSnackBar(context: context);
-    }
-    setState(() {});
-  } */
 }

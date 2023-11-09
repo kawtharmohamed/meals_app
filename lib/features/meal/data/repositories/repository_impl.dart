@@ -25,13 +25,12 @@ class MealRepositoryImpl implements MealRepository {
   }
 
   @override
-  Future <Unit> deleteData(String mealId) async {
+  Future <void> deleteData(String mealId) async {
      await sql.deleteData("meals", mealId);
-     return unit;
   }
 
   @override
-  Future <Unit> insertData(Meal meal) async{
+  Future <void> insertData(Meal meal) async{
    await sql.insertData("meals",
      {
        "name": "${meal.strMeal ??''}",
@@ -39,13 +38,21 @@ class MealRepositoryImpl implements MealRepository {
        "idMeal" :"${meal.idMeal??''}"
      }
     );
-    return unit;
+
   }
 
 
   @override
   Future<List<Meal>> readData() async {
     var data = await sql.readData("meals");
+    print("$data");
     return data.map((e) => e.toEntity()).toList();
   }
+
+ /* @override
+  Future<List<Meal>> search(String searchedCharacter) {
+    // TODO: implement search
+    throw UnimplementedError();
+  }*/
+
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meals_app/features/meal/prsentation/bloc/fav_meals_bloc.dart';
 import 'package:meals_app/features/meal/prsentation/bloc/meal_events.dart';
 import 'package:readmore/readmore.dart';
 
@@ -8,6 +7,7 @@ import '../../../../core/style/colors.dart';
 import '../../../meal_detail/prsentation/pages/meal_detail_page.dart';
 import '../../domain/entities/meal.dart';
 import '../bloc/meal_bloc.dart';
+import '../pages/meal_page.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;

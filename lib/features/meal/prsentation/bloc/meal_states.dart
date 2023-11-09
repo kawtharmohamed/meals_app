@@ -23,6 +23,12 @@ class LoadedFavMealsState extends MealsStates{
   @override
   List<Object> get props => [favMeals];
 }
+class LoadedFilterdMealsState extends MealsStates{
+  final List<Meal> filterdMeals;
+  LoadedFilterdMealsState({required this.filterdMeals});
+  @override
+  List<Object> get props => [filterdMeals];
+}
 
 class ErrorState extends MealsStates {}
 class MessageState extends MealsStates {}

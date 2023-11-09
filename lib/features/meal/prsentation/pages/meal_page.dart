@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meals_app/core/widgets/alter_dialog.dart';
+import 'package:meals_app/core/widgets/snack_bar.dart';
 import 'package:meals_app/features/category/prsentation/pages/home_page.dart';
 import '../../../../core/style/colors.dart';
 import '../../../../core/widgets/loading_widget.dart';
@@ -36,7 +37,11 @@ class MealPage extends StatelessWidget{
         create: (_) => sl<MealsBloc>()
           ..add(AllMealsEvent(strCategory: strCategory)),
         child: BlocConsumer<MealsBloc, MealsStates>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state is MessageState){
+              SnackBarMessage().showSuccessSnackBar(context: context);
+            }
+          },
           builder: (context, state) {
             if (state is ErrorState) {
               return showDialogg(() => _onRefresh(context), () =>

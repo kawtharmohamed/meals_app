@@ -5,8 +5,9 @@ import '../entities/meal.dart';
 
 abstract class MealRepository {
   Future<List<Meal>> getAllMeals(String strCategory);
-  Future <Unit> insertData( Meal meal);
+  Future <void> insertData( Meal meal);
   Future <List<Meal>> readData();
-  Future <Unit> deleteData(String mealId);
+  Future <void> deleteData(String mealId);
+ // Future<List<Meal>> search (String searchedCharacter);
 
 }

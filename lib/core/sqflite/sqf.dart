@@ -34,7 +34,7 @@ class SqlDB {
       id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
       image BLOB NOT NULL,
-      idMeal INTEGER NOT NULL 
+      idMeal TEXT NOT NULL 
     )
   ''');
     print("on createeeee");

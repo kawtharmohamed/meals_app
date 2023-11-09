@@ -7,7 +7,7 @@ class InsertDataUsecase {
   final MealRepository mealRepository;
 
   InsertDataUsecase(this.mealRepository);
-  Future<Unit> call (Meal meal) async {
+  Future<void> call (Meal meal) async {
     return await mealRepository.insertData(meal);
 
   }

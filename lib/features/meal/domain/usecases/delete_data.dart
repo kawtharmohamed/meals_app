@@ -5,7 +5,7 @@ class DeleteDataUsecase {
   final MealRepository mealRepository;
 
   DeleteDataUsecase(this.mealRepository);
-  Future<Unit> call (String mealId) async {
+  Future<void> call (String mealId) async {
     return await mealRepository.deleteData(mealId);
 
   }

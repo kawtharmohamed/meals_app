@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meals_app/features/meal/prsentation/bloc/fav_meals_bloc.dart';
 import 'package:meals_app/features/meal/prsentation/bloc/meal_events.dart';
 
 import '../../../../core/style/colors.dart';
@@ -10,8 +9,8 @@ import '../../domain/entities/meal.dart';
 import '../bloc/meal_bloc.dart';
 
 class FavMealItem extends StatelessWidget{
-  List favMeals = [];
-
+  List <Meal> favMeals ;
+ FavMealItem( {required this.favMeals});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -29,22 +28,14 @@ class FavMealItem extends StatelessWidget{
                 padding: const EdgeInsets.only(top: 15.0),
                 child: ListTile(
                   leading: ClipOval(
-                    child: Image.network("${favMeals[index]['image']}"),
+                    child: Image.network("${favMeals[index].strMealThumb??''}"),
                   ),
-                  title: txt(MyColors.Black, "${favMeals[index]['name']}", 17,
+                  title: txt(MyColors.Black, "${favMeals[index].strMeal??''}", 17,
                       FontWeight.w600, FontStyle.normal),
                   trailing: IconButton(
                     onPressed: () async {
-                      /* String deletedId = favMeals[index]['id'].toString();
-                        int response = await sql.deleteData("meals", "id=$deletedId");
-                        if (response > 0) {
-                          setState(() {
-                            favMeals.removeAt(index);
-                          });
-                          print(response);
-                        }*/
-                      BlocProvider.of<MealsBloc>(context)..add(DeleteMealEvent(mealId:
-                      "${favMeals[index]['id']}"));
+                      BlocProvider.of<MealsBloc>(context).add(DeleteMealEvent(mealId:
+                      "${favMeals[index].idMeal??''}"));
                     },
                     icon: Icon(
                       Icons.delete,
