@@ -6,7 +6,6 @@ import 'package:meals_app/features/category/data/datasources/remote_data_categor
 import 'package:meals_app/features/category/data/repositories/repository_impl.dart';
 import 'package:meals_app/features/meal/data/repositories/repository_impl.dart';
 import 'package:meals_app/features/meal/domain/usecases/insert_data.dart';
-import 'package:meals_app/features/meal/domain/usecases/search.dart';
 import 'package:meals_app/features/meal_detail/data/datasources/remote_data_meal_detail.dart';
 import 'package:meals_app/features/meal_detail/domain/repositories/repository.dart';
 import 'features/category/domain/repositories/repository.dart';
@@ -38,9 +37,7 @@ Future<void> init() async {
   // Bloc
   sl.registerFactory(() => CategoriesBloc(getAllCategories: sl()));
   sl.registerFactory(() => MealsBloc(getAllMeals: sl(), deleteData: sl(),
-      insertData: sl(), readData: sl(),
-      // search: sl()
-  ));
+      insertData: sl(), readData: sl()));
   sl.registerFactory(() => MealsDetailBloc(
         getMealById: sl(),
       ));
@@ -51,7 +48,6 @@ Future<void> init() async {
   sl.registerLazySingleton(() => ReadDataUsecase(sl()));
   sl.registerLazySingleton(() => GetAllMealsUsecase(sl()));
   sl.registerLazySingleton(() => GetMealByIdUsecase(sl()));
-//  sl.registerLazySingleton(() => SearchUsecase(sl()));
   sl.registerLazySingleton(() => http.Client());
   sl.registerLazySingleton(() => Network());
   sl.registerLazySingleton(() => SqlDB());

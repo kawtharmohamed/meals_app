@@ -1,6 +1,17 @@
 {
   "app_name" : "Food Fusion",
   "categories" : "categories",
-  "Favourites" : "Favourites"
-
+  "Favourites" : "Favourites",
+  "Language" : "Change language",
+  "Choose" : "Choose Language",
+  "English" : "English",
+  "Arabic":"Arabic",
+  "Cancel": "Cancel",
+  "Meals": "Meals",
+  "Meal_Detail" : "Meal Detail",
+  "Find" : "Find a Meal..",
+  "Internet" : "No Internet Connection",
+  "Refresh" : "Refresh",
+  "Back" : "Back",
+  "Add" : "Meal Added Successfully"
 }

@@ -49,6 +49,8 @@ dependencies:
   carousel_slider: ^4.2.1
   easy_localization: ^3.0.3
   dartz: ^0.10.1
+  firebase_core: ^2.22.0
+  firebase_messaging: ^14.7.4
 
 dev_dependencies:
   flutter_test:

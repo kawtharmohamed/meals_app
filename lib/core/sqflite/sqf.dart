@@ -32,8 +32,8 @@ class SqlDB {
     await db.execute('''
     CREATE TABLE meals (
       id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      image BLOB NOT NULL,
+      strMeal TEXT NOT NULL,
+      strMealThumb BLOB NOT NULL,
       idMeal TEXT NOT NULL 
     )
   ''');
@@ -52,9 +52,9 @@ class SqlDB {
     return response;
   }
 
-  deleteData(String table, String? mywhere) async {
+  Future<int> deleteData(String table, String mealId) async {
     Database? mydb = await db;
-    int response = await mydb!.delete(table, where: mywhere);
+    int response = await mydb!.delete(table, where: 'idMeal = "$mealId"');
     return response;
   }
 

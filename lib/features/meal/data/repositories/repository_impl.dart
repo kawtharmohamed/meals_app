@@ -23,23 +23,21 @@ class MealRepositoryImpl implements MealRepository {
       throw Exception();
     }
   }
-
+  Future<List<Meal>> deleteData(String mealId) async {
+    await sql.deleteData("meals", mealId);
+    return await readData();
+  }
   @override
-  Future <void> deleteData(String mealId) async {
-     await sql.deleteData("meals", mealId);
+  Future<void> insertData(Meal meal) async {
+    await sql.insertData("meals", {
+      "strMeal": "${meal.strMeal ?? ''}",
+      "strMealThumb": "${meal.strMealThumb ?? ''}",
+      "idMeal": "${meal.idMeal ?? ''}"
+    });
+
+  //  return await getAllMeals(meal.strCategory??'');
   }
 
-  @override
-  Future <void> insertData(Meal meal) async{
-   await sql.insertData("meals",
-     {
-       "name": "${meal.strMeal ??''}",
-       "image": "${meal.strMealThumb ??''}",
-       "idMeal" :"${meal.idMeal??''}"
-     }
-    );
-
-  }
 
 
   @override
@@ -48,11 +46,5 @@ class MealRepositoryImpl implements MealRepository {
     print("$data");
     return data.map((e) => e.toEntity()).toList();
   }
-
- /* @override
-  Future<List<Meal>> search(String searchedCharacter) {
-    // TODO: implement search
-    throw UnimplementedError();
-  }*/
 
 }

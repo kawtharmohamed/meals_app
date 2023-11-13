@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "842109206100",
+    "project_id": "pushnotification-d09aa",
+    "storage_bucket": "pushnotification-d09aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842109206100:android:e58f320fd6cd1d983a37c1",
+        "android_client_info": {
+          "package_name": "com.example.meals_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApQgkdC_rn_2-lvtZnq0Kp3PRvUPidGA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

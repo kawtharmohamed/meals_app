@@ -29,8 +29,6 @@ class DeleteMealEvent extends MealsEvents{
 }
 class SearchEvent extends MealsEvents{
   final String searchedCharacter;
-  SearchEvent({ required this.searchedCharacter});
-  @override
-  List<Object> get props => [searchedCharacter];
+  SearchEvent({required this.searchedCharacter});
 }
 class ReadMealEvent extends MealsEvents{}

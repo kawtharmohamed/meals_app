@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meals_app/features/category/prsentation/pages/home_page.dart';
@@ -7,6 +8,7 @@ import '../../../../core/widgets/alter_dialog.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../core/widgets/text.dart';
 import '../../../../dependency_injection.dart';
+import '../../../../lang/locale_keys.g.dart';
 import '../../../meal/domain/entities/meal.dart';
 import '../bloc/meal_detail_bloc.dart';
 import '../bloc/meal_detail_events.dart';
@@ -29,7 +31,7 @@ class MealDetailPage extends StatelessWidget {
   AppBar _buildAppBar() => AppBar(
         title: SizedBox(
             width: 300,
-            child: txt(MyColors.White, "Meal Detail", 22, FontWeight.w500,
+            child: txt(MyColors.White, LocaleKeys.Meal_Detail.tr(), 22, FontWeight.w500,
                 FontStyle.normal)),
       );
 

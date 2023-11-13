@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meals_app/features/meal/prsentation/bloc/meal_events.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../../../core/style/colors.dart';
 import '../../../../core/widgets/text.dart';
@@ -9,7 +10,7 @@ import '../../domain/entities/meal.dart';
 import '../bloc/meal_bloc.dart';
 
 class FavMealItem extends StatelessWidget{
-  List <Meal> favMeals ;
+  final List <Meal> favMeals ;
  FavMealItem( {required this.favMeals});
   @override
   Widget build(BuildContext context) {
@@ -23,19 +24,35 @@ class FavMealItem extends StatelessWidget{
             color: MyColors.LightGrey,
             elevation: 2,
             child: Container(
-              height: 90,
+              height: 95,
               child: Padding(
                 padding: const EdgeInsets.only(top: 15.0),
                 child: ListTile(
                   leading: ClipOval(
-                    child: Image.network("${favMeals[index].strMealThumb??''}"),
+                    child: Image.network( favMeals[index].strMealThumb?? ''),
                   ),
-                  title: txt(MyColors.Black, "${favMeals[index].strMeal??''}", 17,
-                      FontWeight.w600, FontStyle.normal),
+                  title: ReadMoreText(
+                    favMeals[index].strMeal ?? '' ,style:TextStyle(fontWeight: FontWeight.bold) ,
+                    trimLines: 2,
+                    colorClickableText: MyColors.Black,
+                    trimMode: TrimMode.Line,
+                    trimCollapsedText: 'Show more',
+                    trimExpandedText: 'Show less',
+                    moreStyle: const TextStyle(
+                      fontSize: 15,
+                      color: MyColors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    lessStyle: const TextStyle(
+                      fontSize: 15,
+                      color: MyColors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   trailing: IconButton(
                     onPressed: () async {
                       BlocProvider.of<MealsBloc>(context).add(DeleteMealEvent(mealId:
-                      "${favMeals[index].idMeal??''}"));
+                      favMeals[index].idMeal??''));
                     },
                     icon: Icon(
                       Icons.delete,

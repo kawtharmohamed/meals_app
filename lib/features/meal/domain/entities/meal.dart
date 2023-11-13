@@ -31,4 +31,18 @@ class Meal extends Equatable{
     strInstructions, strMealThumb , strTags , strYoutube
   ];
 
+  Meal copyWith({
+    String? idMeal,
+    String? strMeal,
+    String? strMealThumb,
+    bool? isFavourite,
+  }) {
+    return Meal(
+      idMeal: idMeal ?? this.idMeal,
+      strMeal: strMeal ?? this.strMeal,
+      strMealThumb: strMealThumb ?? this.strMealThumb,
+      isFavourite: isFavourite ?? this.isFavourite, strDrinkAlternate: '',
+      strCategory: '', strArea: '', strInstructions: '', strTags: '', strYoutube: '',
+    );
+  }
 }
