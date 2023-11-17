@@ -31,9 +31,9 @@ class MealDetailPage extends StatelessWidget {
   AppBar _buildAppBar() => AppBar(
         title: SizedBox(
             width: 300,
-            child: txt(MyColors.White, LocaleKeys.Meal_Detail.tr(), 22, FontWeight.w500,
+            child: txt2(MyColors.White, LocaleKeys.Meal_Detail.tr(), 22, FontWeight.w500,
                 FontStyle.normal)),
-      );
+         );
 
   Widget _buildBody() => BlocProvider(
         create: (_) => sl<MealsDetailBloc>()

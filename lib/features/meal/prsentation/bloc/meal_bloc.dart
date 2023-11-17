@@ -55,16 +55,19 @@ class MealsBloc extends Bloc<MealsEvents, MealsStates> {
         }
       } else if (event is ReadMealEvent) {
         emit(LoadingState());
-        emit(LoadedFavMealsState(favMeals: _favoriteMeals));
+        final favMeals = await readData();
+        emit(LoadedFavMealsState(favMeals: favMeals));
       } else if (event is AddMealEvent) {
         emit(LoadingState());
-          final addedMeals = await insertData(event.meal);
-          event.meal.isFavourite=true;
+        final addedMeals = await insertData(event.meal);
+        event.meal.isFavourite = true;
         _favoriteMeals.add(event.meal);
-        _allMeals.firstWhere((element) => element.idMeal==event.meal.idMeal).isFavourite=true;
-          emit (LoadedMealsState(meals: _allMeals));
-      }
-      else if (event is DeleteMealEvent) {
+        _allMeals
+            .firstWhere((element) => element.idMeal == event.meal.idMeal)
+            .isFavourite = true;
+        emit(MessageState());
+        emit(LoadedMealsState(meals: _allMeals));
+      } else if (event is DeleteMealEvent) {
         final updatedMeals = await deleteData(event.mealId);
         emit(LoadedFavMealsState(favMeals: updatedMeals));
       } else if (event is SearchEvent) {

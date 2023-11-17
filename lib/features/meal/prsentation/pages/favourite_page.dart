@@ -14,8 +14,8 @@ class FavouritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      backgroundColor: MyColors.White,
       body: BlocProvider<MealsBloc>(
         create: (_) => sl<MealsBloc>()
           ..add(ReadMealEvent()),

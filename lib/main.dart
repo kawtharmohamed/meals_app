@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meals_app/core/firebase/firebase_api.dart';
 import 'package:meals_app/core/style/app_theme.dart';
 import 'package:meals_app/lang/codegen_loader.g.dart';
+import 'core/cubit/theme_cubit.dart';
+import 'core/cubit/theme_state.dart';
 import 'dependency_injection.dart';
-import 'features/category/prsentation/bloc/category_bloc.dart';
-import 'features/category/prsentation/bloc/category_events.dart';
 import 'features/category/prsentation/pages/splash_page.dart';
 
 void main() async {
@@ -16,36 +16,38 @@ void main() async {
   await FirebaseApi().initNotification();
   await EasyLocalization.ensureInitialized();
   await init();
-  runApp(EasyLocalization(supportedLocales: const [
-    Locale('en'),
-    Locale('ar')
-  ],
-  path: 'assets/lang',
-  assetLoader: const CodegenLoader(),
-  fallbackLocale: const Locale('en'),
-  child: const MyApp()));
+  runApp(
+    BlocProvider(
+      create: (context) => ThemeCubit(),
+      child: EasyLocalization(
+        supportedLocales: const [Locale('en'), Locale('ar')],
+        path: 'assets/lang',
+        assetLoader: const CodegenLoader(),
+        fallbackLocale: const Locale('en'),
+        child: const MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({
-    Key? key,
-  }) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-            create: (_) => sl<CategoriesBloc>()..add(AllCategoriesEvent())),
-      ],
-      child: MaterialApp(
-        supportedLocales: context.supportedLocales,
-        localizationsDelegates: context.localizationDelegates,
-        locale: context.locale,
-        debugShowCheckedModeBanner: false,
-        home: const SplashScreen(),
-        theme: appTheme,
-      ),
+    return BlocBuilder<ThemeCubit, ThemeState>(
+      builder: (context, state) {
+        return MaterialApp(
+          supportedLocales: context.supportedLocales,
+          localizationsDelegates: context.localizationDelegates,
+          locale: context.locale,
+          debugShowCheckedModeBanner: false,
+          home: const SplashScreen(),
+          theme: state is ThemeChanged && state.isDark
+              ? appDarkTheme
+              : appLightTheme,
+        );
+      },
     );
   }
 }

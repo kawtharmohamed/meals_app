@@ -25,9 +25,10 @@ class MealPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final  isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: _buildAppBar(),
-      body: _buildBody(),
+      body: _buildBody(isDarkMode),
     );
   }
 
@@ -35,7 +36,7 @@ class MealPage extends StatelessWidget {
         elevation: 0.0,
         title: SizedBox(
           width: 300,
-          child: txt(
+          child: txt2(
             MyColors.White,
             LocaleKeys.Meals.tr(),
             22,
@@ -45,7 +46,7 @@ class MealPage extends StatelessWidget {
         ),
       );
 
-  Widget _buildBody() => BlocProvider<MealsBloc>(
+  Widget _buildBody(bool isDarkMode) => BlocProvider<MealsBloc>(
         create: (_) =>
             sl<MealsBloc>()..add(AllMealsEvent(strCategory: strCategory)),
         child: BlocConsumer<MealsBloc, MealsStates>(
@@ -62,7 +63,7 @@ class MealPage extends StatelessWidget {
                     children: [
                       Container(
                         height: 65,
-                        color: MyColors.darkYellow,
+                        color: isDarkMode? MyColors.DarkGrey2 : MyColors.darkYellow,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
@@ -99,10 +100,12 @@ class MealPage extends StatelessWidget {
                           () => Navigator.pop(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HomePage(),
+                                builder: (context) => const HomePage(),
                               )))
                       : const SizedBox(),
-                  state is AddMealState ? MealsList(meals: state.meals): const SizedBox(),
+                  state is AddMealState
+                      ? MealsList(meals: state.meals)
+                      : const SizedBox(),
                 ],
               ),
             );

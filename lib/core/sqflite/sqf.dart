@@ -40,13 +40,13 @@ class SqlDB {
     print("on createeeee");
   }
 
-  Future<List<MealModel>>readData(String table) async {
-    Database? mydb =  await db;
+  Future<List<MealModel>> readData(String table) async {
+    Database? mydb = await db;
     List<Map<String, dynamic>> response = await mydb!.query(table);
     return response.map((e) => MealModel.fromJson(e)).toList();
   }
 
-  insertData(String table, Map<String, Object?> values ) async {
+  insertData(String table, Map<String, Object?> values) async {
     Database? mydb = await db;
     int response = await mydb!.insert(table, values);
     return response;

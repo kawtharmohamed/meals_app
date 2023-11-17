@@ -12,6 +12,7 @@ class MealDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final  isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -27,30 +28,23 @@ class MealDetailWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(
                   top: 45.0,
                   left: 20,
                 ),
-                child: Row(
-                  children: [
-                    Material(
-                      color: Colors.transparent,
-                    ),
-                  ],
-                ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 220.0),
+                padding: EdgeInsets.only(top: 220.0),
                 child: Container(
-                  height: 370,
+                  height: 378,
                   width: double.infinity,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(50),
                       topLeft: Radius.circular(50.0),
                     ),
-                    color: Colors.white,
+                    color: isDarkMode? MyColors.Black : MyColors.White,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -61,7 +55,7 @@ class MealDetailWidget extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          txt(MyColors.Black, meal.strMeal ?? '', 21,
+                          txt(context, meal.strMeal ?? '', 21,
                               FontWeight.w600, FontStyle.normal),
                           const SizedBox(height: 5),
                           const SizedBox(
@@ -69,12 +63,12 @@ class MealDetailWidget extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              const Icon(Icons.location_on,
-                                  color: MyColors.Black, size: 26),
+                              Icon(Icons.location_on,
+                                  color: isDarkMode? MyColors.White : MyColors.Black, size: 26),
                               Padding(
                                 padding: const EdgeInsets.only(left: 15.0),
                                 child: txt(
-                                    MyColors.darkGrey,
+                                    context,
                                     meal.strArea ?? '',
                                     17,
                                     FontWeight.w500,
@@ -88,15 +82,15 @@ class MealDetailWidget extends StatelessWidget {
                           const SizedBox(
                             height: 15,
                           ),
-                          txt(MyColors.Black, "Recipe : ", 17, FontWeight.w600,
+                          txt(context, "Recipe : ", 17, FontWeight.w600,
                               FontStyle.normal),
                           const SizedBox(
                             height: 15,
                           ),
                           ReadMoreText(
                             meal.strInstructions ?? '',
-                            style: const TextStyle(
-                                color: MyColors.darkGrey, fontSize: 16),
+                            style:  TextStyle(
+                                color: isDarkMode? MyColors.White : MyColors.darkGrey, fontSize: 16),
                             trimLines: 5,
                             colorClickableText: MyColors.darkGrey,
                             trimMode: TrimMode.Line,
@@ -114,7 +108,7 @@ class MealDetailWidget extends StatelessWidget {
                           const SizedBox(
                             height: 17,
                           ),
-                          txt(MyColors.Black, "Way of the recipe : ", 17,
+                          txt(context, "Way of the recipe : ", 17,
                               FontWeight.w600, FontStyle.normal),
                           const SizedBox(
                             height: 15,

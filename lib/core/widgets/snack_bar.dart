@@ -7,7 +7,7 @@ class SnackBarMessage {
   void showSuccessSnackBar(
       {required BuildContext context}) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar( duration: Duration(seconds: 1),
+      SnackBar( duration: Duration(seconds: 2),
         content: Text(
           LocaleKeys.Add.tr(),
           style: TextStyle(color: MyColors.White),

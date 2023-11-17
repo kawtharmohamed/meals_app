@@ -14,6 +14,7 @@ class FavMealItem extends StatelessWidget{
  FavMealItem( {required this.favMeals});
   @override
   Widget build(BuildContext context) {
+    final  isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return ListView.builder(
       shrinkWrap: true,
       itemCount: favMeals.length,
@@ -21,7 +22,7 @@ class FavMealItem extends StatelessWidget{
         return Padding(
           padding: const EdgeInsets.all(6.0),
           child: Card(
-            color: MyColors.LightGrey,
+            color: isDarkMode? MyColors.DarkGrey3: MyColors.LightGrey,
             elevation: 2,
             child: Container(
               height: 95,
@@ -54,7 +55,7 @@ class FavMealItem extends StatelessWidget{
                       BlocProvider.of<MealsBloc>(context).add(DeleteMealEvent(mealId:
                       favMeals[index].idMeal??''));
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.delete,
                       color: MyColors.red,
                     ),

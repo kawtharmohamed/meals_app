@@ -8,3 +8,7 @@ abstract class CategoriesEvents extends Equatable{
 class AllCategoriesEvent extends CategoriesEvents{}
 
 class CategoryRefreshEvent extends CategoriesEvents{}
+class SliderEvent extends CategoriesEvents{
+  final int activeIndex;
+  SliderEvent({required this.activeIndex});
+}

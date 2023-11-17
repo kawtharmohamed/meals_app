@@ -11,9 +11,10 @@ class CategoriesInitial extends CategoriesStates {}
 class LoadingState extends CategoriesStates {}
 class LoadedCategoriesState extends CategoriesStates {
   final List<Categoryy> categories ;
-  LoadedCategoriesState({ required this.categories});
+  final int activeIndex;
+  LoadedCategoriesState({ required this.categories , required this.activeIndex});
   @override
-  List<Object> get props => [categories];
+  List<Object> get props => [categories , activeIndex];
 }
 
 class ErrorState extends CategoriesStates {}
