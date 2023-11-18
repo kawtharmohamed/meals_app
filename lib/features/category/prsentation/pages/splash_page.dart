@@ -21,7 +21,7 @@ class SplashScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
-            child: txt(context, "Food Fusion", 27, FontWeight.w600,
+            child: txt2(MyColors.Black, "Food Fusion", 27, FontWeight.w600,
                 FontStyle.italic),
           ),
           Padding(

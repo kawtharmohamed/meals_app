@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meals_app/features/meal/prsentation/bloc/meal_events.dart';
 import 'package:readmore/readmore.dart';
-
 import '../../../../core/style/colors.dart';
-import '../../../../core/widgets/text.dart';
 import '../../domain/entities/meal.dart';
 import '../bloc/meal_bloc.dart';
 

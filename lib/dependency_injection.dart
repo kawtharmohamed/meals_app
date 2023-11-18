@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:meals_app/core/cubit/sharedpref.dart';
+import 'package:meals_app/core/cubit/theme_cubit.dart';
 import 'package:meals_app/core/network/network.dart';
 import 'package:meals_app/core/sqflite/sqf.dart';
 import 'package:meals_app/features/category/data/datasources/remote_data_category.dart';
@@ -10,6 +12,7 @@ import 'package:meals_app/features/meal/data/repositories/repository_impl.dart';
 import 'package:meals_app/features/meal/domain/usecases/insert_data.dart';
 import 'package:meals_app/features/meal_detail/data/datasources/remote_data_meal_detail.dart';
 import 'package:meals_app/features/meal_detail/domain/repositories/repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'core/firebase/firebase_api.dart';
 import 'features/category/domain/repositories/repository.dart';
 import 'features/category/domain/usecases/get_all_categories.dart';
@@ -55,4 +58,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => Network());
   sl.registerLazySingleton(() => SqlDB());
   sl.registerLazySingleton(() => FirebaseApi());
+  final shared = await SharedPreferences.getInstance();
+  sl.registerLazySingleton(() => shared);
+  sl.registerLazySingleton(() => ThemePreferences(shared));
+  sl.registerLazySingleton(() => ThemeCubit(sl()));
+
 }
