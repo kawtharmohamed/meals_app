@@ -56,6 +56,7 @@ class MealPage extends StatelessWidget {
             }
           },
           builder: (context, state) {
+            MealsBloc bloc = BlocProvider.of(context);
             return Scaffold(
               body: Column(
                 children: [
@@ -75,7 +76,7 @@ class MealPage extends StatelessWidget {
                             child: TextField(
                               controller: searchController,
                               onChanged: (String searchedCharacter) {
-                                BlocProvider.of<MealsBloc>(context).add(
+                                bloc.add(
                                     SearchEvent(
                                         searchedCharacter: searchedCharacter));
                               },
@@ -90,9 +91,7 @@ class MealPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  state is LoadedMealsState
-                      ? MealsList(meals: state.meals)
-                      : const SizedBox(),
+                  MealsList(meals: searchController.text.isEmpty ? bloc.allMeals :bloc.filtredMeal),
                   state is LoadingState ? LoadingWidget() : const SizedBox(),
                   state is ErrorState
                       ? showDialogg(

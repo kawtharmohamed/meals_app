@@ -58,9 +58,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => Network());
   sl.registerLazySingleton(() => SqlDB());
   sl.registerLazySingleton(() => FirebaseApi());
-  final shared = await SharedPreferences.getInstance();
-  sl.registerLazySingleton(() => shared);
-  sl.registerLazySingleton(() => ThemePreferences(shared));
+  sl.registerSingletonAsync(() async =>  await SharedPreferences.getInstance());
+  sl.registerLazySingleton(() => ThemePreferences(sl()));
   sl.registerLazySingleton(() => ThemeCubit(sl()));
 
 }

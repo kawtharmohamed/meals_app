@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meals_app/core/style/colors.dart';
 
 class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Padding(

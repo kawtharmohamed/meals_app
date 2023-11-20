@@ -45,22 +45,24 @@ class MealItem extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                           const SizedBox(height: 15),
-                          ReadMoreText(
-                            meal.strMeal ?? '',
-                            trimLines: 2,
-                            colorClickableText: MyColors.Black,
-                            trimMode: TrimMode.Line,
-                            trimCollapsedText: 'Show more',
-                            trimExpandedText: 'Show less',
-                            moreStyle: const TextStyle(
-                              fontSize: 15,
-                              color: MyColors.blue,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            lessStyle: const TextStyle(
-                              fontSize: 15,
-                              color: MyColors.red,
-                              fontWeight: FontWeight.bold,
+                          Center(
+                            child: ReadMoreText(
+                              meal.strMeal ?? '', textAlign: TextAlign.center,
+                              trimLines: 2,
+                              colorClickableText: MyColors.Black,
+                              trimMode: TrimMode.Line,
+                              trimCollapsedText: 'Show more',
+                              trimExpandedText: 'Show less',
+                              moreStyle: const TextStyle(
+                                fontSize: 15,
+                                color: MyColors.blue,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              lessStyle: const TextStyle(
+                                fontSize: 15,
+                                color: MyColors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],

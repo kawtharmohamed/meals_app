@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
           showDialog(
             context: context,
             builder: (BuildContext context) {
-              return showDialogg2(
+              return chooseLanguageDialog(
                     () async => await context.setLocale(const Locale('en')),
                     () async => await context.setLocale(const Locale('ar')),
                     () => Navigator.pop(

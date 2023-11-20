@@ -17,8 +17,9 @@ class MealsBloc extends Bloc<MealsEvents, MealsStates> {
   final InsertDataUsecase insertData;
   final DeleteDataUsecase deleteData;
   final ReadDataUsecase readData;
-  List<Meal> _allMeals = [];
+  List<Meal> allMeals = [];
   List<Meal> _favoriteMeals = [];
+  List <Meal> filtredMeal=[];
   MealsBloc({
     required this.getAllMeals,
     required this.deleteData,
@@ -32,7 +33,7 @@ class MealsBloc extends Bloc<MealsEvents, MealsStates> {
         try {
           final meals = await getAllMeals(strCategory);
           final favMeals = await readData();
-          _allMeals = meals;
+          allMeals = meals;
           _favoriteMeals = favMeals;
           for (int i = 0; i < meals.length; i++) {
             var isFavourite = favMeals
@@ -62,21 +63,21 @@ class MealsBloc extends Bloc<MealsEvents, MealsStates> {
         final addedMeals = await insertData(event.meal);
         event.meal.isFavourite = true;
         _favoriteMeals.add(event.meal);
-        _allMeals
+        allMeals
             .firstWhere((element) => element.idMeal == event.meal.idMeal)
             .isFavourite = true;
         emit(MessageState());
-        emit(LoadedMealsState(meals: _allMeals));
+        emit(LoadedMealsState(meals: allMeals));
       } else if (event is DeleteMealEvent) {
         final updatedMeals = await deleteData(event.mealId);
         emit(LoadedFavMealsState(favMeals: updatedMeals));
       } else if (event is SearchEvent) {
-        final filteredMeals = _allMeals
+        filtredMeal = allMeals
             .where((meal) => meal.strMeal!
                 .toLowerCase()
                 .startsWith(event.searchedCharacter.toLowerCase()))
             .toList();
-        emit(LoadedMealsState(meals: filteredMeals));
+        emit(LoadedMealsState(meals:filtredMeal ));
       }
     });
   }

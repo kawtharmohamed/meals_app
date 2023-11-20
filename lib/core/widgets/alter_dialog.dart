@@ -15,7 +15,7 @@ Widget showDialogg(Function() onPressed1, Function() onPressed2) => AlertDialog(
         ),
       ],
     );
-Widget showDialogg2(
+Widget chooseLanguageDialog(
         Function() onPressed1, Function() onPressed2, Function() onPressed3) =>
     AlertDialog(
       title: Text(LocaleKeys.Choose.tr()),
