@@ -11,7 +11,7 @@ import '../bloc/category_states.dart';
 import '../widgets/categories_list.dart';
 
 class CategoryPage extends StatelessWidget {
-  const CategoryPage({Key? key});
+  const CategoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class CategoryPage extends StatelessWidget {
               ),
             );
           }
-          return LoadingWidget();
+          return const LoadingWidget();
         },
       ),
     );

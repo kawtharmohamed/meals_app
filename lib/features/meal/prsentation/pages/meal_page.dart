@@ -25,7 +25,7 @@ class MealPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final  isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: _buildAppBar(),
       body: _buildBody(isDarkMode),
@@ -64,7 +64,9 @@ class MealPage extends StatelessWidget {
                     children: [
                       Container(
                         height: 65,
-                        color: isDarkMode? MyColors.DarkGrey2 : MyColors.darkYellow,
+                        color: isDarkMode
+                            ? MyColors.DarkGrey2
+                            : MyColors.darkYellow,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
@@ -76,13 +78,12 @@ class MealPage extends StatelessWidget {
                             child: TextField(
                               controller: searchController,
                               onChanged: (String searchedCharacter) {
-                                bloc.add(
-                                    SearchEvent(
-                                        searchedCharacter: searchedCharacter));
+                                bloc.add(SearchEvent(
+                                    searchedCharacter: searchedCharacter));
                               },
                               decoration: InputDecoration(
                                 hintText: LocaleKeys.Find.tr(),
-                                prefixIcon: Icon(Icons.search, size: 22),
+                                prefixIcon: const Icon(Icons.search, size: 22),
                                 border: InputBorder.none,
                               ),
                             ),
@@ -91,8 +92,11 @@ class MealPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  MealsList(meals: searchController.text.isEmpty ? bloc.allMeals :bloc.filtredMeal),
-                  state is LoadingState ? LoadingWidget() : const SizedBox(),
+                  MealsList(
+                      meals: searchController.text.isEmpty
+                          ? bloc.allMeals
+                          : bloc.filtredMeal),
+                  state is LoadingState ? const LoadingWidget() : const SizedBox(),
                   state is ErrorState
                       ? showDialogg(
                           () => _onRefresh(context),

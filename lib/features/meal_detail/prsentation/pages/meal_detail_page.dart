@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meals_app/features/category/prsentation/pages/home_page.dart';
 import 'package:meals_app/features/meal/prsentation/pages/meal_page.dart';
 import '../../../../core/style/colors.dart';
 import '../../../../core/widgets/alter_dialog.dart';
@@ -37,7 +36,7 @@ class MealDetailPage extends StatelessWidget {
 
   Widget _buildBody() => BlocProvider(
         create: (_) => sl<MealsDetailBloc>()
-          ..add(MealByIdEvent(idMeal: meal?.idMeal ?? "")),
+          ..add(MealByIdEvent(idMeal: meal.idMeal ?? "")),
         child: BlocConsumer<MealsDetailBloc, MealDetailStates>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -48,7 +47,7 @@ class MealDetailPage extends StatelessWidget {
             } else if (state is LoadedMealsDetailState) {
               return MealDetailWidget(meal: state.meal);
             }
-            return LoadingWidget();
+            return const LoadingWidget();
           },
         ),
       );

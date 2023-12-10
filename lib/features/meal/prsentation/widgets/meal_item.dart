@@ -7,8 +7,6 @@ import '../../../../core/style/colors.dart';
 import '../../../meal_detail/prsentation/pages/meal_detail_page.dart';
 import '../../domain/entities/meal.dart';
 import '../bloc/meal_bloc.dart';
-import '../pages/meal_page.dart';
-
 class MealItem extends StatelessWidget {
   final Meal meal;
   const MealItem({super.key, required this.meal});

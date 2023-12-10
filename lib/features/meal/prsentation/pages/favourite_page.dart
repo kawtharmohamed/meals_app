@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meals_app/core/style/colors.dart';
-import 'package:meals_app/core/widgets/snack_bar.dart';
 import 'package:meals_app/features/meal/prsentation/bloc/meal_events.dart';
 import 'package:meals_app/features/meal/prsentation/widgets/fav_meal_item.dart';
 import '../../../../core/widgets/loading_widget.dart';
@@ -11,6 +8,8 @@ import '../bloc/meal_bloc.dart';
 import '../bloc/meal_states.dart';
 
 class FavouritePage extends StatelessWidget {
+  const FavouritePage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class FavouritePage extends StatelessWidget {
           if (state is LoadedFavMealsState) {
               return FavMealItem(favMeals: state.favMeals,);
             }
-            return LoadingWidget();
+            return const LoadingWidget();
           },
         ),
       ),

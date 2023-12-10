@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/meal.dart';
 import '../../domain/usecases/delete_data.dart';
 import '../../domain/usecases/get_all_meals.dart';
 import '../../domain/usecases/insert_data.dart';
 import '../../domain/usecases/read_data.dart';
-import '../pages/meal_page.dart';
 import 'meal_events.dart';
 import 'meal_states.dart';
 import 'package:collection/collection.dart';
@@ -77,7 +74,7 @@ class MealsBloc extends Bloc<MealsEvents, MealsStates> {
                 .toLowerCase()
                 .startsWith(event.searchedCharacter.toLowerCase()))
             .toList();
-        emit(LoadedMealsState(meals:filtredMeal ));
+        emit(LoadedMealsState(meals:filtredMeal));
       }
     });
   }

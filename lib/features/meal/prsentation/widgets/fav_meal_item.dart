@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meals_app/features/meal/prsentation/bloc/meal_events.dart';
@@ -9,7 +8,7 @@ import '../bloc/meal_bloc.dart';
 
 class FavMealItem extends StatelessWidget{
   final List <Meal> favMeals ;
- FavMealItem( {required this.favMeals});
+ const FavMealItem( {super.key, required this.favMeals});
   @override
   Widget build(BuildContext context) {
     final  isDarkMode = Theme.of(context).brightness == Brightness.dark;
@@ -22,7 +21,7 @@ class FavMealItem extends StatelessWidget{
           child: Card(
             color: isDarkMode? MyColors.DarkGrey3: MyColors.LightGrey,
             elevation: 2,
-            child: Container(
+            child: SizedBox(
               height: 95,
               child: Padding(
                 padding: const EdgeInsets.only(top: 15.0),
@@ -31,7 +30,7 @@ class FavMealItem extends StatelessWidget{
                     child: Image.network( favMeals[index].strMealThumb?? ''),
                   ),
                   title: ReadMoreText(
-                    favMeals[index].strMeal ?? '' ,style:TextStyle(fontWeight: FontWeight.bold) ,
+                    favMeals[index].strMeal ?? '' ,style:const TextStyle(fontWeight: FontWeight.bold) ,
                     trimLines: 2,
                     colorClickableText: MyColors.Black,
                     trimMode: TrimMode.Line,

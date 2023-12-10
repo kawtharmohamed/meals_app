@@ -1,13 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:meals_app/core/style/colors.dart';
 import '../../../../core/widgets/text.dart';
 import '../../../meal/prsentation/pages/meal_page.dart';
 import '../../domain/entities/category.dart';
 class CategoriesList extends StatelessWidget {
   final List<Categoryy> categories;
 
-  CategoriesList({Key? key, required this.categories}) : super(key: key);
+  const CategoriesList({Key? key, required this.categories}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +35,7 @@ class CategoriesList extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         width: 150,
                         height: 140,
                         child: Image.network(categories[index].strCategoryThumb ?? ""),

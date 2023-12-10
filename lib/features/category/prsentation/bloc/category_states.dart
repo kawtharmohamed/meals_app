@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import '../../domain/entities/category.dart';
 
 abstract class CategoriesStates extends Equatable{
-  CategoriesStates();
+  const CategoriesStates();
   @override
   List<Object> get props => [];
 }
@@ -12,7 +12,7 @@ class LoadingState extends CategoriesStates {}
 class LoadedCategoriesState extends CategoriesStates {
   final List<Categoryy> categories ;
   final int activeIndex;
-  LoadedCategoriesState({ required this.categories , required this.activeIndex});
+  const LoadedCategoriesState({ required this.categories , required this.activeIndex});
   @override
   List<Object> get props => [categories , activeIndex];
 }

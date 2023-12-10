@@ -1,10 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meals_app/core/style/colors.dart';
 import 'package:meals_app/core/widgets/alter_dialog.dart';
 import 'package:meals_app/lang/locale_keys.g.dart';
-import '../../../../core/cubit/theme_cubit.dart';
 import '../../../../core/widgets/text.dart';
 import '../../../meal/prsentation/pages/favourite_page.dart';
 import 'category_page.dart';
@@ -15,7 +13,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: _buildAppBar(context),
         body: _buildBody(),
@@ -34,23 +32,28 @@ class HomePage extends StatelessWidget {
       tabs: [
         Tab(
           text: LocaleKeys.categories.tr(),
-          icon: Icon(Icons.home),
+          icon: const Icon(Icons.home),
         ),
         Tab(
           text: LocaleKeys.Favourites.tr(),
-          icon: Icon(Icons.favorite),
+          icon: const Icon(Icons.favorite),
+        ),
+        Tab(
+          text: LocaleKeys.Favourites.tr(),
+          icon: const Icon(Icons.favorite),
         )
       ],
     ),
     actions: [
       IconButton(
-        icon: Icon(Icons.dark_mode),
+        icon: const Icon(Icons.dark_mode),
         onPressed: () {
-          BlocProvider.of<ThemeCubit>(context).changeTheme();
+        //  BlocProvider.of<ThemeCubit>(context).changeTheme();
+
         },
       ),
       IconButton(
-        icon: Icon(Icons.language),
+        icon: const Icon(Icons.language),
         onPressed: () {
           showDialog(
             context: context,
@@ -60,7 +63,7 @@ class HomePage extends StatelessWidget {
                     () async => await context.setLocale(const Locale('ar')),
                     () => Navigator.pop(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => const HomePage()),
                 ),
               );
             },

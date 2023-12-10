@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 abstract class MealDetailEvents extends Equatable{
-  MealDetailEvents();
+  const MealDetailEvents();
   @override
   List<Object> get props => [];
 }
@@ -9,6 +9,6 @@ abstract class MealDetailEvents extends Equatable{
 class MealByIdEvent extends MealDetailEvents{
   final String idMeal;
 
-  MealByIdEvent({required this.idMeal});
+  const MealByIdEvent({required this.idMeal});
 }
 class RefreshMealDetailEvent extends MealDetailEvents{}

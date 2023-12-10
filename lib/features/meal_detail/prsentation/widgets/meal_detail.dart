@@ -28,19 +28,19 @@ class MealDetailWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(
                   top: 45.0,
                   left: 20,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 220.0),
+                padding: const EdgeInsets.only(top: 220.0),
                 child: Container(
                   height: 378,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(50),
                       topLeft: Radius.circular(50.0),
                     ),
