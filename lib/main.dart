@@ -5,9 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meals_app/core/firebase/firebase_api.dart';
 import 'package:meals_app/core/style/app_theme.dart';
 import 'package:meals_app/lang/codegen_loader.g.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'core/cubit/theme_cubit.dart';
-import 'core/cubit/theme_state.dart';
+import 'core/theme_cubit/theme_cubit.dart';
+import 'core/theme_cubit/theme_state.dart';
 import 'dependency_injection.dart';
 import 'features/category/prsentation/pages/splash_page.dart';
 
