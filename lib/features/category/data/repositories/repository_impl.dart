@@ -2,7 +2,6 @@ import 'package:meals_app/features/category/domain/repositories/repository.dart'
 import '../../../../core/network/network.dart';
 import '../../domain/entities/category.dart';
 import '../datasources/remote_data_category.dart';
-import '../models/category_model.dart';
 
 class CategoryRepositoryImpl implements CategoryRepository {
   final RemoteDataCategory remoteDataCategory;

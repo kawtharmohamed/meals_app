@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meals_app/core/style/colors.dart';
 import 'package:meals_app/core/widgets/alter_dialog.dart';
 import 'package:meals_app/lang/locale_keys.g.dart';
+import '../../../../core/theme_cubit/theme_cubit.dart';
 import '../../../../core/widgets/text.dart';
 import '../../../meal/prsentation/pages/favourite_page.dart';
 import 'category_page.dart';
@@ -48,8 +50,7 @@ class HomePage extends StatelessWidget {
       IconButton(
         icon: const Icon(Icons.dark_mode),
         onPressed: () {
-        //  BlocProvider.of<ThemeCubit>(context).changeTheme();
-
+          BlocProvider.of<ThemeCubit>(context).changeTheme();
         },
       ),
       IconButton(
