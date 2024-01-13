@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/core/style/colors.dart';
 
 final appLightTheme = ThemeData(
+  useMaterial3: false,
   appBarTheme: const AppBarTheme(
     backgroundColor: MyColors.darkYellow,
     centerTitle: true,
@@ -16,6 +17,7 @@ final appLightTheme = ThemeData(
 );
 
 final appDarkTheme = ThemeData(
+  useMaterial3: false,
   scaffoldBackgroundColor: MyColors.Black,
   appBarTheme: const AppBarTheme(
     backgroundColor: MyColors.DarkGrey2,

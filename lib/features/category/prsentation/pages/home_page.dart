@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: _buildAppBar(context),
         body: _buildBody(),
@@ -34,16 +34,12 @@ class HomePage extends StatelessWidget {
       tabs: [
         Tab(
           text: LocaleKeys.categories.tr(),
-          icon: const Icon(Icons.home),
+          icon: const Icon(Icons.home , color:MyColors.White),
         ),
         Tab(
           text: LocaleKeys.Favourites.tr(),
           icon: const Icon(Icons.favorite),
         ),
-        Tab(
-          text: LocaleKeys.Favourites.tr(),
-          icon: const Icon(Icons.favorite),
-        )
       ],
     ),
     actions: [
@@ -74,9 +70,9 @@ class HomePage extends StatelessWidget {
     ],
   );
 
-  Widget _buildBody() => TabBarView(
+  Widget _buildBody() => const TabBarView(
     children: [
-      const CategoryPage(),
+      CategoryPage(),
       FavouritePage(),
     ],
   );

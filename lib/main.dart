@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
           theme: state is ThemeChanged && state.isDark
               ? appDarkTheme
               : appLightTheme,
+
         );
       },
     );
