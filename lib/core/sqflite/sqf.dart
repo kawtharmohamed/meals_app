@@ -1,5 +1,4 @@
 import 'package:meals_app/features/meal/data/models/meal_model.dart';
-import 'package:meals_app/features/meal/domain/entities/meal.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -16,15 +15,15 @@ class SqlDB {
   }
 
   initialDb() async {
-    String databasepath = await getDatabasesPath();
-    String path = join(databasepath, 'meals.db');
-    Database mydb = await openDatabase(path,
+    String databasePath = await getDatabasesPath();
+    String path = join(databasePath, 'meals.db');
+    Database myDb = await openDatabase(path,
         onCreate: _onCreate, version: 2, onUpgrade: _onUpgrade);
-    return mydb;
+    return myDb;
   }
 
-  _onUpgrade(Database db, int oldversion, int newversion) async {
-    print("on upgradeeeee");
+  _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    print("on upgrade");
     // await db.execute("ALTER TABLE meals ADD COLUMN");
   }
 
@@ -37,30 +36,30 @@ class SqlDB {
       idMeal TEXT NOT NULL 
     )
   ''');
-    print("on createeeee");
+    print("on create");
   }
 
   Future<List<MealModel>> readData(String table) async {
-    Database? mydb = await db;
-    List<Map<String, dynamic>> response = await mydb!.query(table);
+    Database? myDb = await db;
+    List<Map<String, dynamic>> response = await myDb!.query(table);
     return response.map((e) => MealModel.fromJson(e)).toList();
   }
 
   insertData(String table, Map<String, Object?> values) async {
-    Database? mydb = await db;
-    int response = await mydb!.insert(table, values);
+    Database? myDb = await db;
+    int response = await myDb!.insert(table, values);
     return response;
   }
 
   Future<int> deleteData(String table, String mealId) async {
-    Database? mydb = await db;
-    int response = await mydb!.delete(table, where: 'idMeal = "$mealId"');
+    Database? myDb = await db;
+    int response = await myDb!.delete(table, where: 'idMeal = "$mealId"');
     return response;
   }
 
-  mydeleteDatabase() async {
-    String databasepath = await getDatabasesPath();
-    String path = join(databasepath, 'meals.db');
+  myDeleteDatabase() async {
+    String databasePath = await getDatabasesPath();
+    String path = join(databasePath, 'meals.db');
     await deleteDatabase(path);
   }
 }

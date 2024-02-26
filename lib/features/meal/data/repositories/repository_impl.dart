@@ -1,11 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:meals_app/features/meal/data/datasources/remote_data_meal.dart';
 import 'package:meals_app/features/meal/domain/repositories/repository.dart';
 import '../../../../core/network/network.dart';
-
 import '../../../../core/sqflite/sqf.dart';
 import '../../domain/entities/meal.dart';
-import '../models/meal_model.dart';
 
 class MealRepositoryImpl implements MealRepository {
   final RemoteDataMeal remoteDataMeal;
@@ -23,6 +20,7 @@ class MealRepositoryImpl implements MealRepository {
       throw Exception();
     }
   }
+  @override
   Future<List<Meal>> deleteData(String mealId) async {
     await sql.deleteData("meals", mealId);
     return await readData();
@@ -30,9 +28,9 @@ class MealRepositoryImpl implements MealRepository {
   @override
   Future<void> insertData(Meal meal) async {
     await sql.insertData("meals", {
-      "strMeal": "${meal.strMeal ?? ''}",
-      "strMealThumb": "${meal.strMealThumb ?? ''}",
-      "idMeal": "${meal.idMeal ?? ''}"
+      "strMeal": meal.strMeal ?? '',
+      "strMealThumb": meal.strMealThumb ?? '',
+      "idMeal": meal.idMeal ?? ''
     });
 
   //  return await getAllMeals(meal.strCategory??'');
